@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { Redirect } from "react-router-dom";
-
+import NavigationBar from "../Navigation";
 function SignUpForm(){
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
@@ -39,7 +39,7 @@ function SignUpForm(){
 
     return (
         <>
-            <h1>Sign Up</h1>
+            <NavigationBar/>
             <form onSubmit={handleSubmit}>
                 <ul>
                     {errors.map((error) => <li key={error}>{error}</li>)}
