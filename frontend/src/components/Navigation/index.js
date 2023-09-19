@@ -6,10 +6,12 @@ import logo from './fortrails.png';
 import './index.css';
 import { Link, useParams } from 'react-router-dom';
 import { Redirect } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 function NavigationBar(){
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleButtonClick = (e) => {
         e.preventDefault();
@@ -17,7 +19,9 @@ function NavigationBar(){
         return dispatch(sessionActions.logout())
     }
 
-
+    const handleExploreClick= (e) =>{
+        history.push('/explore')
+    }
 
     return (
         <nav>
@@ -26,8 +30,7 @@ function NavigationBar(){
                     <img src={logo} alt='Logo' />
                 </Link>
                 <p>ForTrails</p>
-                
-                <p>Explore</p>
+                <p onClick={handleExploreClick}>Explore</p>
                 <p>Saved</p>
             </div>
             
@@ -35,7 +38,7 @@ function NavigationBar(){
                 <p>Help</p>
                 {sessionUser ? <button onClick={handleButtonClick} >
                     Log Out
-                </button> : <Link to="/login">Log In</Link>}
+                </button> : <Link to="/login" id="login-button">Log In</Link>}
             </div>
             
         </nav>

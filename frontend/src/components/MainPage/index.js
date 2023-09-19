@@ -5,36 +5,31 @@ import NavigationBar from "../Navigation";
 import BackgroundImageChanger from "./backGroundImgItem";
 import "./index.css"
 import searchBar from "./search.png"
+import { Link, useParams } from 'react-router-dom';
 
 
 
 
 function MainPage() {
     return(
-        <div>
-        
-            <NavigationBar />
-           
-
+        <>
+            <NavigationBar/>
             <div className="SearchBarContainer">
-
-                
-
                 <div className="SearchBarContents">
                     <div className="SearchBarTitle">
                         <p>Find your outdoors </p>
                     </div>
 
                     <div className="form-group has-feedback has-search">
-                        <div className="search-icon">
+                        {/* <div className="search-icon">
                             <img src={searchBar} alt="Search" />
-                        </div>
+                        </div> */}
 
-                        <input type="text" className="SearchBarInput" placeholder="Search" />
+                        <input type="text" className="SearchBarInput" placeholder="Search by city, park, or trail name" />
                     </div>
 
                     <div>
-                        <p>Explore nearby trails</p>
+                        <Link to="/" className="exploreLink">Explore nearby trails</Link>
                     </div>
                 </div>
 
@@ -43,7 +38,7 @@ function MainPage() {
 
             
       
-        </div>
+        </>
     )
 }
 
