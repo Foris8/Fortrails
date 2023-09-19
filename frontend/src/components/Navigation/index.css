@@ -6,10 +6,8 @@ img {
 
 nav{
     display: flex;
-    border: 1px solid black;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
 }
 
 .left-panel{
