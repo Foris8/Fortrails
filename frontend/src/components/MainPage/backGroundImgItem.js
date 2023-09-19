@@ -30,6 +30,7 @@ const BackgroundImageChanger = ()=>{
             </picture>
         </div>
     )
+    
 }
 
 
