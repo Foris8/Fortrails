@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: Fortrails_production
-  username: Fortrails
-  password: <%= ENV["FORTRAILS_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

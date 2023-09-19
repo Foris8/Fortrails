@@ -1,5 +1,29 @@
 {
   "dependencies": {
     "bootstrap": "^5.3.2"
-  }
+  },
+  "name": "backend",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Foris8/Fortrails.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "16.20.1"},
+  "bugs": {
+    "url": "https://github.com/Foris8/Fortrails/issues"
+  },
+  "homepage": "https://github.com/Foris8/Fortrails#readme"
 }
