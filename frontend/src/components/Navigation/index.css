@@ -1,0 +1,31 @@
+img {
+    width: 50px;
+    height: 60px;
+    fill:rgb(20,40,0)
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left-panel{
+    display: inline-flex;
+    grid-gap: 8px;
+    gap: 8px;
+    align-items: center;
+}
+
+.right-panel {
+        display: inline-flex;
+        grid-gap: 8px;
+        gap: 8px;
+        align-items: center;
+}
+
+
+
+
+
+

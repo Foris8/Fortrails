@@ -1,0 +1,93 @@
+div {
+    display: block;
+}
+.LoginSignupLayout-module {
+    min-height: calc(100vh - 64px);
+    position: relative;
+}
+
+.LoginSignupLayout-module {
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    min-height: 100vh;
+    /* Set the minimum height to fill the entire viewport */
+}
+
+
+
+.LoginSignupLayout-module-picture{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.LoginSignupLayout-module__img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.LoginForm-module-container{
+    background-color: rgba(255, 255, 255, 0.8);
+        /* Optional: Add a semi-transparent white background */
+    max-width: 524px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .08);
+    border-radius: 16px;
+    text-align: center;
+    padding: 24px;
+    z-index: 10;
+}
+
+.LoginForm-module {
+    background-color: #fff;
+    max-width: 524px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .08);
+    border-radius: 16px;
+    text-align: center;
+    padding: 24px;
+    z-index: 10;
+
+}
+
+.LoginForm-mLoginForm-module{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.LoginInFormComponent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 32px 32px;
+}
+
+.LoginInFormComponent h1{
+    margin-bottom: 32px;
+    text-align: center;
+    font-family: Percent, Beatrice, Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #142800;
+    display: block;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+}
+
+
+
+
+
+

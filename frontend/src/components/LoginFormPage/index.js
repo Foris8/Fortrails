@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import './LoginForm.css';
 import { Redirect } from "react-router-dom";
 import { Link, useParams } from 'react-router-dom';
+import NavigationBar from "../Navigation";
 
 function LoginFormPage(){
     const dispatch = useDispatch();
@@ -41,26 +42,54 @@ function LoginFormPage(){
     }else{
         return (
             <>
-                <h1>Log In</h1>
-                <Link to="/signup">Sign Up</Link>
-                
+                <NavigationBar/>
+    
+                <div className="LoginSignupLayout-module">
 
-                <form onSubmit={handleSubmit}>
-                    <ul>
-                        {errors.map(error => <li key={error}>{error}</li>)}
-                    </ul>
-                    <label>Email
-                        <input type="text" value={email} onChange={(e) => { setEmail(e.target.value) }} />
-                    </label>
-                    <br />
+                    <picture className="LoginSignupLayout-module-picture">
+                        <img src="https://cdn-assets.alltrails.com/assets/packs/6c3153dde95ee18f954b.jpg" alt="On one side, a person stands in the shadow of stunning red-rock formations, on the other, a woman smiles joyfully in a field with a flower over one ear." className="LoginSignupLayout-module__img"></img>
+                    </picture>
 
-                    <label>Password
-                        <input type="password" value={password} onChange={(e) => { setPassowrd(e.target.value) }} />
-                    </label>
+                    <div className="LoginForm-module-container">
+                        <div className="LoginForm-mLoginForm-module">
+    
 
-                    <br />
-                    <button type="submit">Log In</button>
-                </form>
+                            <form onSubmit={handleSubmit} className="LoginInFormComponent">
+                                <h1>
+                                    Welcome back
+                                    <br />
+                                    Log in and start exloring.
+                                </h1>
+
+                                <ul>
+                                    {errors.map(error => <li key={error}>{error}</li>)}
+                                </ul>
+
+                                <div className="emailInputBox MuiInputBase-root">
+                                    <input type="text" id="emailInputBox" name="email" value={email} placeholder="Email" onChange={(e) => { setEmail(e.target.value) }} />
+                                </div>
+
+                                <div className="passwordInputBox MuiInputBase-root">
+                                    <input type="password" id="passwordInputBox" name="password" placeholder="Passoword" value={password} onChange={(e) => { setPassowrd(e.target.value) }} />
+                                </div>
+                                
+                                
+                                <button type="submit">Log In</button>
+
+                                <Link to="/signup">Sign Up</Link>
+                            </form>
+
+                        </div>
+
+
+                    </div>
+
+                    
+
+                    
+                </div>
+
+            
             </>
         )
     }
