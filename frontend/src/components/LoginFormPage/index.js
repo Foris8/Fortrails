@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom";
 import { Link, useParams } from 'react-router-dom';
 import NavigationBar from "../Navigation";
 
+
 function LoginFormPage(){
     const dispatch = useDispatch();
     const [email,setEmail] = useState();
@@ -51,7 +52,6 @@ function LoginFormPage(){
                     </picture>
 
                     <div className="LoginForm-module-container">
-                        
                         <h1>
                             Welcome back
                             <br />
