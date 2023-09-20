@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { Redirect } from "react-router-dom";
 import NavigationBar from "../Navigation";
+import "./index.css"
 function SignUpForm(){
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
@@ -40,59 +41,68 @@ function SignUpForm(){
     return (
         <>
             <NavigationBar/>
-            <form onSubmit={handleSubmit}>
-                <ul>
-                    {errors.map((error) => <li key={error}>{error}</li>)}
-                </ul>
-                <label>
-                    First Name
-                    <input
-                        type="text"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        required
-                    />
-                </label>
 
-                <label>
-                    Last Name
-                    <input
-                        type="text"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        required
-                    />
-                </label>
+            <div className="signup-form-module">
 
-                <label>
-                    Email
-                    <input
-                        type="text"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Password
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Confirm Password
-                    <input
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                    />
-                </label>
-                <button type="submit">Sign Up</button>
-            </form>
+                <picture className="singup-module-picture">
+                    
+                    <img src="https://cdn-assets.alltrails.com/assets/packs/cac6fbd783c101b0c3e0.jpg" alt="On one side, a person stands in the shadow of stunning red-rock formations, on the other, a woman smiles joyfully in a field with a flower over one ear." className="signup-module__img"></img>
+                </picture>
+
+                <form onSubmit={handleSubmit} className="SignUpFormComponent">
+                    <ul>
+                        {errors.map((error) => <li key={error}>{error}</li>)}
+                    </ul>
+                    <label>
+                        First Name
+                        <input
+                            type="text"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        Last Name
+                        <input
+                            type="text"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        Email
+                        <input
+                            type="text"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </label>
+                    <label>
+                        Password
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </label>
+                    <label>
+                        Confirm Password
+                        <input
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                        />
+                    </label>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
         </>
     )
 }

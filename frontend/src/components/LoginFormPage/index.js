@@ -51,35 +51,38 @@ function LoginFormPage(){
                     </picture>
 
                     <div className="LoginForm-module-container">
-                        <div className="LoginForm-mLoginForm-module">
-    
+                        
+                        <h1>
+                            Welcome back
+                            <br />
+                            Log in and start exloring.
+                        </h1>
 
-                            <form onSubmit={handleSubmit} className="LoginInFormComponent">
-                                <h1>
-                                    Welcome back
-                                    <br />
-                                    Log in and start exloring.
-                                </h1>
+                        <form onSubmit={handleSubmit} className="LoginInFormComponent">
+                            
 
-                                <ul>
-                                    {errors.map(error => <li key={error}>{error}</li>)}
-                                </ul>
+                            <div className="emailInputBox MuiInputBase-root">
+                                <input type="text" id="emailInputBox" name="email" value={email} placeholder="Email" onChange={(e) => { setEmail(e.target.value) }} />
+                            </div>
 
-                                <div className="emailInputBox MuiInputBase-root">
-                                    <input type="text" id="emailInputBox" name="email" value={email} placeholder="Email" onChange={(e) => { setEmail(e.target.value) }} />
-                                </div>
+                            <div className="passwordInputBox MuiInputBase-root">
+                                <input type="password" id="passwordInputBox" name="password" placeholder="Passoword" value={password} onChange={(e) => { setPassowrd(e.target.value) }} />
+                            </div>
 
-                                <div className="passwordInputBox MuiInputBase-root">
-                                    <input type="password" id="passwordInputBox" name="password" placeholder="Passoword" value={password} onChange={(e) => { setPassowrd(e.target.value) }} />
-                                </div>
-                                
-                                
-                                <button type="submit">Log In</button>
+                            <ul>
+                                {errors.map(error => <li key={error}>{error}</li>)}
+                            </ul>
+                            
+                            <button type="submit" className="login-button MuiInputBase-roo">Log In</button>
+                            
+                            
 
-                                <Link to="/signup">Sign Up</Link>
-                            </form>
+            
+                        </form>
+                        
+                        <button className="login-button" id="demo-login">Demo Login</button>
 
-                        </div>
+                        <Link to="/signup" className="signup-link">Sign Up</Link>
 
 
                     </div>

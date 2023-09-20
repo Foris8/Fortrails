@@ -34,5 +34,16 @@ ApplicationRecord.transaction do
     }) 
   end
 
+
+
+  puts "Creating parks..."
+  10.times do
+    Park.create!(
+      park_name: Faker::Address.unique.community, # Generates a fake community name
+      lat: rand(-90.0..90.0),           # Generates a fake latitude
+      lng: rand(-180.0..180.0)           # Generates a fake longitude
+    )
+  end
+
   puts "Done!"
 end

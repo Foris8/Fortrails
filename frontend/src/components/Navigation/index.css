@@ -8,6 +8,7 @@ nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0;
 }
 
 .left-panel{
@@ -40,6 +41,18 @@ nav{
     gap: 32px;
     align-items: center;
     margin-right: 32px;
+    color: #142800;
+    vertical-align: baseline;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+.right-panel p {
+    font-family: Manrope, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
     color: #142800;
     vertical-align: baseline;
     background: transparent;
