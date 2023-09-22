@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrails, getTrails } from '../../../store/trail';
+import TrailIndexItem from './TrailIndexItem';
+import './index.css';
 
 const TrailIndexPage = () => {
     const dispatch = useDispatch();
@@ -12,22 +14,14 @@ const TrailIndexPage = () => {
     console.log(trails); 
 
     return (
-        <div>
+        <div className='trail-item-container'>
             <h1>Trails</h1>
-            <ul>
+            <ul className='trail-item-list'>
                 {trails.map((trail) => {
-                    console.log(trail);
-
-                    return(
-                        <li key={trail.id}>
-                            <p>{trail.id}</p>
-                            <p>Trail Name: {trail.trailName}</p>
-                            <p>Description: {trail.description}</p>
-                            <p>Latitude: {trail.lat}</p>
-                            <p>Longitude: {trail.lng}</p>
-                        </li>
-                    )
-                    
+                  
+                    return <TrailIndexItem trail={trail} key={trail.id} />
+                
+    
                 })}
             </ul>
         </div>

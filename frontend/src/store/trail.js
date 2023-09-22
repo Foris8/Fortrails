@@ -21,7 +21,7 @@ export const receiveTrail = trail =>{
 
 //selector and returns from store
 export const getTrails = state =>{
-    debugger
+
     if(state.trails) return Object.values(state.trails);
     return [];
 }

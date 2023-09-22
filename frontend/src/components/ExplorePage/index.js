@@ -16,14 +16,14 @@ const ExplorePage = ()=>{
     });
     const center = useMemo(() => ({ lat: 80, lng: -80 }), []);
 
-
-    
+    console.log(process.env.REACT_APP_GOOGLE_API_KEY)
     return (
         <>
-            <TrailIndexPage/>
+            
             <NavigationBar/>
+            
             <div className="google-map-module">
-                <img src="https://fakeimg.pl/600x400" id="placeholder"></img>
+                <TrailIndexPage />
 
                 <div className="google-map-container">
                     {!isLoaded ? (
@@ -32,7 +32,7 @@ const ExplorePage = ()=>{
                         <GoogleMap
                             mapContainerClassName="google-map"
                             center={center}
-                            zoom={10}
+                            zoom={14}
                         >
                             <Marker position={{ lat: 80, lng: -80 }} />
                         </GoogleMap>

@@ -4,7 +4,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignUpForm from "./components/SignUpForm";
 import MainPage from "./components/MainPage";
 import ExplorePage from "./components/ExplorePage";
-
+import TrailShowPage from "./components/Trails/TrailShowPage";
 
 
 
@@ -16,6 +16,7 @@ function App() {
         <Route exact path="/login" component={LoginFormPage} />
         <Route exact path="/signup" component={SignUpForm} />
         <Route exact path="/explore" component={ExplorePage} />
+        <Route exact path="/trails/:trailId" component={TrailShowPage} />
       </Switch>
     </>
   );
