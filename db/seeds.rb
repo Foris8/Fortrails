@@ -45,5 +45,49 @@ ApplicationRecord.transaction do
     )
   end
 
+  puts "Creating trails..."
+
+  # Define a proc to generate random descriptions
+  random_description = proc { Faker::Lorem.paragraphs(number: rand(1..3)).join("\n\n") }
+
+  # Create an array of trail data near New York City
+  trail_data = [
+    {
+      trail_name: 'Central Park Loop',
+      description: random_description.call,
+      lat: 40.785091,
+      lng: -73.968285
+    },
+    {
+      trail_name: 'Hudson River Greenway',
+      description: random_description.call,
+      lat: 40.760936,
+      lng: -74.002793
+    },
+    {
+      trail_name: 'Prospect Park Trail',
+      description: random_description.call,
+      lat: 40.661675,
+      lng: -73.971953
+    },
+    {
+      trail_name: 'Bronx River Greenway',
+      description: random_description.call,
+      lat: 40.891295,
+      lng: -73.843206
+    }
+  ]
+
+  # Create the trails using the data
+  trails = []
+
+  trail_data.each do |data|
+    trail = Trail.create!(data)
+    trails << trail
+  end
+
+  puts "#{trails.count} trails created!"
+
+
   puts "Done!"
 end

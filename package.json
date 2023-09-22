@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "bootstrap": "^5.3.2"
+    "bootstrap": "^5.3.2",
+    "google-maps-react": "^2.0.6"
   },
   "name": "backend",
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
@@ -9,7 +10,6 @@
   "directories": {
     "lib": "lib"
   },
-  "devDependencies": {},
   "scripts": {
     "build": "npm install --prefix frontend && npm run build --prefix frontend"
   },
@@ -21,7 +21,8 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": "16.20.1"},
+    "node": "16.20.1"
+  },
   "bugs": {
     "url": "https://github.com/Foris8/Fortrails/issues"
   },

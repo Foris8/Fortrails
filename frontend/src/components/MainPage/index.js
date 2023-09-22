@@ -29,7 +29,7 @@ function MainPage() {
                     </div>
 
                     <div>
-                        <Link to="/" className="exploreLink">Explore nearby trails</Link>
+                        <Link to="/explore" className="exploreLink">Explore nearby trails</Link>
                     </div>
                 </div>
 

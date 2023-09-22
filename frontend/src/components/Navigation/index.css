@@ -84,6 +84,48 @@ nav{
     text-decoration: none;
 }
 
+#login-button:hover {
+    background-color: rgba(90, 101, 77, 0.381);
+
+}
+
+#logo-title{
+    gap: 0px;
+}
+
+#logo{
+    gap: 0px;
+}
+
+#logout-button{
+    background-color: rgba(21, 27, 13, .08);
+    color: #142800;
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    max-width: 100%;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all .2s ease-out;
+    font-family: Manrope, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #142800;
+    height: 32px;
+    padding: 0 16px;
+    text-decoration: none;
+    border: none;
+
+}
+
+#logout-button:hover{
+    background-color: rgba(90, 101, 77, 0.381);
+}
 
 
 

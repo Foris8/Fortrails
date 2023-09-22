@@ -23,20 +23,24 @@ function NavigationBar(){
         history.push('/explore')
     }
 
+    const handleTitleClick = (e) =>{
+        history.push('/')
+    }
+
     return (
         <nav>
             <div className="left-panel">
                 <Link to="/">
-                    <img src={logo} alt='Logo' />
+                    <img src={logo} alt='Logo' id="logo"/>
                 </Link>
-                <p>ForTrails</p>
+                <p id="logo-title" onClick={handleTitleClick}>ForTrails</p>
                 <p onClick={handleExploreClick}>Explore</p>
                 <p>Saved</p>
             </div>
             
             <div className="right-panel">
                 <p>Help</p>
-                {sessionUser ? <button onClick={handleButtonClick} >
+                {sessionUser ? <button onClick={handleButtonClick} id="logout-button" >
                     Log Out
                 </button> : <Link to="/login" id="login-button">Log In</Link>}
             </div>
