@@ -25,7 +25,7 @@ ApplicationRecord.transaction do
   )
 
   # More users
-  10.times do 
+  users = 10.times.map do 
     User.create!({
       first_name: Faker::Name.unique.first_name,
       last_name: Faker::Name.unique.last_name,
@@ -87,6 +87,21 @@ ApplicationRecord.transaction do
   end
 
   puts "#{trails.count} trails created!"
+
+
+  #Create Trails
+  trails.each do |trail|
+    users.sample(rand(2..4)).each do |user|
+      Review.create!(
+        body: Faker::Lorem.sentences(number: rand(1..3)).join(' '),
+        rating: rand(1..5),
+        trail: trail,
+        author: user
+      )
+    end
+  end
+
+  
 
 
   puts "Done!"
