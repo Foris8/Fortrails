@@ -16,6 +16,7 @@
 .trail-item.image{
     overflow-clip-margin: content-box;
     overflow: clip;
+    
        
 }
 
@@ -37,5 +38,6 @@
     object-fit: cover;
     transition: transform .3s ease-in-out;
     border-radius: 12px;
+    cursor: pointer;
 
 }

@@ -12,9 +12,9 @@ import TrailIndexPage from "../Trails/TrailIndexPage";
 
 const ExplorePage = ()=>{
     const { isLoaded } = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+        googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
     });
-    const center = useMemo(() => ({ lat: 80, lng: -80 }), []);
+    const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
 
     console.log(process.env.REACT_APP_GOOGLE_API_KEY)
     return (
