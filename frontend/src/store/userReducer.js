@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { RECEIVE_TRAIL } from "./trail";
 // ACTION TYPES
 const RECEIVE_USER = 'users/RECEIVE_USER';
 const REMOVE_USER = 'users/REMOVE_USER';
@@ -58,6 +59,9 @@ const userReducer = (state = {}, action) => {
         case REMOVE_USER:
             delete nextState[action.userId];
             return nextState;
+        case RECEIVE_TRAIL:
+            const trailUsers = action.data.users
+            return {...state, ...trailUsers}
         default:
             return state;
     }

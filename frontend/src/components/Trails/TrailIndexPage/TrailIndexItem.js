@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 const TrailIndexItem = ({trail}) =>{
     const history = useHistory();
     const handleClickTrailImg = (e) =>{
-        history.push('/trails/:trailId')
+        history.push(`/trails/${trail.id}`)
     }
 
     return(

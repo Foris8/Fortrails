@@ -1,6 +1,7 @@
 import csrfFetch from "./csrf.js";
-import { receiveTrail } from "./trail.js";
+import { receiveTrail, RECEIVE_TRAIL } from "./trail.js";
 import { receiveUser } from "./userReducer.js";
+
 
 const ADD_REVIEW = 'reviews/addReview';
 const ADD_REVIEWS = 'reviews/addReviews';
@@ -20,6 +21,17 @@ export const addReviews = reviews => ({
     type: ADD_REVIEWS,
     payload: reviews
 });
+
+
+export const fetchReviews = () => async dispatch => {
+    const res = await csrfFetch(`/api/reviews`);
+    if (res.ok) {
+        const reviews = await res.json();
+        debugger
+
+        dispatch(addReviews(reviews));
+    }
+}
 
 export const getTrailReviews = trailId => state => (
     Object.values(state.reviews)
@@ -66,6 +78,11 @@ function reviewsReducer(state = {}, action) {
         case ADD_REVIEWS:
             const reviews = action.payload;
             return { ...state, ...reviews };
+        case RECEIVE_TRAIL:
+            const trailReview = action.data.reviews
+     
+    
+            return { ...state, ...trailReview}
         default:
             return state;
     }

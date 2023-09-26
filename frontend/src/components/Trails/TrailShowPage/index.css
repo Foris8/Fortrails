@@ -1,9 +1,17 @@
+
 .main-content-box {
     display: flex;
     position: relative;
     justify-content: center;
     width: 100%;
-    height: 500px;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(109, 52, 52, 0.2);
 }
 
 .main-content-container {
@@ -17,4 +25,39 @@
     position: relative;
     width: 100%;
     height: auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    /* Optionally, set the other corners to 0 for square corners */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.trail-title{
+    position: absolute;
+    font-family: Percent, Beatrice, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 100;
+    line-height: 1.3;
+    color: rgb(239, 239, 236);
+    margin: 0px 0px 6px;
+}
+
+.bottom-container{
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+
+}
+
+.right-trail-content{
+    border-left: solid grey 0.5px;
+    height: 100vh;
+}
+
+.left-trail-content{
+    
+}
+
+.left-trail-content > *{
+    border-bottom: solid grey 0.5px;
 }

@@ -13,5 +13,7 @@
 class Trail < ApplicationRecord
     validates :trail_name, :description, :lat, :lng, presence:true
 
-    
+    has_many :reviews, dependent: :destroy
+    has_one_attached :photo
+
 end

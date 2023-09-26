@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require "open-uri"
 
 ApplicationRecord.transaction do 
   puts "Destroying tables..."
@@ -101,7 +102,13 @@ ApplicationRecord.transaction do
     end
   end
 
-  
+  puts "Attaching photos..."
+  Trail.first(3).each_with_index do |trail, index|
+    trail.photo.attach(
+      io: URI.open("https://fortrails-seeds.s3.amazonaws.com/trail_#{index + 1}.jpg"), 
+      filename: "trail#{index + 1}.jpg"
+    )
+  end
 
 
   puts "Done!"

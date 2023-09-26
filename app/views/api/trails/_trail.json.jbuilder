@@ -1,13 +1,13 @@
 json.extract! trail, 
   :id, 
-  :title,
+  :trail_name,
   :description, 
   :lat, 
-  :lng, 
+  :lng
 
   
-if bench.photo.attached?
-  json.photo_url url_for(bench.photo) 
-else
-  json.photo_url "/bench_placeholder.png"
-end
+# if trail.photo.attached?
+#   json.photo_url url_for(trail.photo) 
+# else
+#   json.photo_url "/trail_placeholder.png"
+# end

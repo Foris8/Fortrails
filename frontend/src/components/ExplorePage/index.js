@@ -9,12 +9,14 @@ import NavigationBar from "../Navigation";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import { useMemo } from "react";
 import TrailIndexPage from "../Trails/TrailIndexPage";
+import { fetchReviews } from "../../store/review";
 
 const ExplorePage = ()=>{
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
     });
     const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
+
 
     console.log(process.env.REACT_APP_GOOGLE_API_KEY)
     return (

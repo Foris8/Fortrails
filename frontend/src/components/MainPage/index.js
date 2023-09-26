@@ -6,7 +6,7 @@ import BackgroundImageChanger from "./backGroundImgItem";
 import "./index.css"
 import searchBar from "./search.png"
 import { Link, useParams } from 'react-router-dom';
-
+import Footer from "../Footer";
 
 
 
@@ -36,7 +36,7 @@ function MainPage() {
                 <BackgroundImageChanger className="ImgChanger" />
             </div>
 
-            
+            <Footer/>
       
         </>
     )

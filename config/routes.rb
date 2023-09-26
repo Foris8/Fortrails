@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         resources :users, only: [:create]
         resources :parks, only: [:index, :show]
         resources :trails, only: [:index,:show,:create]
+        resources :reviews, only: [:create, :destroy]
         resource :session, only: [:create, :show, :destroy]
     
     end
