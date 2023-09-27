@@ -3,11 +3,14 @@ json.extract! trail,
   :trail_name,
   :description, 
   :lat, 
-  :lng
+  :lng,
+  :difficulty,
+  :average_rating,
+  :total_num_rating
 
   
-# if trail.photo.attached?
-#   json.photo_url url_for(trail.photo) 
-# else
-#   json.photo_url "/trail_placeholder.png"
-# end
+if trail.picture.attached?
+  json.photo_url url_for(trail.picture) 
+else
+  json.photo_url "/trail_placeholder.jpg"
+end

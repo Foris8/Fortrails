@@ -15,7 +15,6 @@ const TrailIndexPage = () => {
 
     return (
         <div className='trail-item-container'>
-            <h1>Trails</h1>
             <ul className='trail-item-list'>
                 {trails.map((trail) => {
                   

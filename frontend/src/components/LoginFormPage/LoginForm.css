@@ -94,6 +94,7 @@ div {
     justify-content: center;
     align-items: center;
     padding: 0;
+    gap: 10px;
 }
 
 .LoginInFormComponent h1{

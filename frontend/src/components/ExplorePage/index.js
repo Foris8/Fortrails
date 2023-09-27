@@ -15,10 +15,10 @@ const ExplorePage = ()=>{
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
     });
-    const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
+    const center = useMemo(() => ({ lat: 40.7128, lng: -74.0060 }), []);
 
 
-    console.log(process.env.REACT_APP_GOOGLE_API_KEY)
+    
     return (
         <>
             
@@ -36,7 +36,7 @@ const ExplorePage = ()=>{
                             center={center}
                             zoom={14}
                         >
-                            <Marker position={{ lat: 80, lng: -80 }} />
+                            <Marker position={{ lat: 40.7128, lng: -74.0060 }} />
                         </GoogleMap>
                     )}
                 </div>

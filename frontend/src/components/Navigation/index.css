@@ -4,11 +4,12 @@ img {
     fill:rgb(20,40,0)
 }
 
-nav{
+nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 0;
+    border-bottom: 1.5px #e2dbdb solid;
 }
 
 .left-panel{

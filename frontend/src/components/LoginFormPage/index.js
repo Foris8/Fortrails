@@ -36,6 +36,11 @@ function LoginFormPage(){
             });
     };
 
+    const handleDemoLogin = (e) =>{
+        setEmail('demo@user.io');
+        setPassowrd('password');
+    }
+
     if (sessionUser){
         return(
             <Redirect to="/"/>
@@ -75,12 +80,12 @@ function LoginFormPage(){
                             
                             <button type="submit" className="login-button MuiInputBase-roo">Log In</button>
                             
-                            
+                            <button type="submit" className="login-button" id="demo-login" onClick={handleDemoLogin}>Demo Login</button>
 
             
                         </form>
                         
-                        <button className="login-button" id="demo-login">Demo Login</button>
+                        
 
                         <Link to="/signup" className="signup-link">Sign Up</Link>
 

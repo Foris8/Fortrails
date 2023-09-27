@@ -14,7 +14,13 @@ Rails.application.routes.draw do
     end
 
     get '*path', to: "static_pages#frontend_index"
-    
+  
+  if Rails.env.development? || Rails.env.test?
+    # Allow access to Active Storage in development and test environments
+    # This is usually already present in Rails 6+
+    mount ActiveStorage::Engine => '/rails/active_storage'
+  end
+  
 end
 
 

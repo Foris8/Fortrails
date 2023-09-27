@@ -11,10 +11,15 @@ ApplicationRecord.transaction do
   puts "Destroying tables..."
   # Unnecessary if using `rails db:seed:replant`
   User.destroy_all
+  Park.destroy_all
+  Trail.destroy_all
 
   puts "Resetting primary keys..."
   # For easy testing, so that after seeding, the first `User` has `id` of 1
   ApplicationRecord.connection.reset_pk_sequence!('users')
+  ApplicationRecord.connection.reset_pk_sequence!('parks')
+  ApplicationRecord.connection.reset_pk_sequence!('trails')
+end
 
   puts "Creating users..."
   # Create one user with an easy to remember username, email, and password:
@@ -46,38 +51,96 @@ ApplicationRecord.transaction do
     )
   end
 
+
   puts "Creating trails..."
 
   # Define a proc to generate random descriptions
-  random_description = proc { Faker::Lorem.paragraphs(number: rand(1..3)).join("\n\n") }
+  def random_description
+    descriptions = [
+      'A beautiful trail through lush greenery with scenic views.',
+      'Enjoy a peaceful walk along the riverbank with the city skyline in the backdrop.',
+      'Explore this serene trail that winds through the heart of the city, perfect for relaxation.',
+      'This trail offers a great opportunity for birdwatching and wildlife enthusiasts.',
+      'A family-friendly trail with easy access and stunning natural surroundings.',
+      'Hike through diverse landscapes, from wooded areas to open fields, on this moderate-level trail.',
+      'A challenging trail with steep climbs and rewarding vistas of the surrounding area.',
+      'Discover hidden gems along the trail, such as waterfalls and historic landmarks.',
+      'This trail is known for its colorful wildflowers and unique plant life.',
+      'An ideal trail for cycling enthusiasts, offering both scenic beauty and exercise.',
+      'A popular trail for picnicking and enjoying a day outdoors with family and friends.'
+    ]
+    descriptions.sample
+  end
 
   # Create an array of trail data near New York City
   trail_data = [
-    {
-      trail_name: 'Central Park Loop',
-      description: random_description.call,
-      lat: 40.785091,
-      lng: -73.968285
-    },
-    {
-      trail_name: 'Hudson River Greenway',
-      description: random_description.call,
-      lat: 40.760936,
-      lng: -74.002793
-    },
-    {
-      trail_name: 'Prospect Park Trail',
-      description: random_description.call,
-      lat: 40.661675,
-      lng: -73.971953
-    },
-    {
-      trail_name: 'Bronx River Greenway',
-      description: random_description.call,
-      lat: 40.891295,
-      lng: -73.843206
-    }
-  ]
+  {
+    trail_name: 'Central Park Loop',
+    description: random_description,
+    lat: 40.785091,
+    lng: -73.968285,
+    difficulty: 'Easy'
+  },
+  {
+    trail_name: 'Hudson River Greenway',
+    description: random_description,
+    lat: 40.760936,
+    lng: -74.002793,
+    difficulty: 'Moderate'
+  },
+  {
+    trail_name: 'Prospect Park Trail',
+    description: random_description,
+    lat: 40.661675,
+    lng: -73.971953,
+    difficulty: 'Easy'
+  },
+  {
+    trail_name: 'Bronx River Greenway',
+    description: random_description,
+    lat: 40.891295,
+    lng: -73.843206,
+    difficulty: 'Hard'
+  },
+  {
+    trail_name: 'Brooklyn Bridge Walkway',
+    description: 'Stroll along the iconic Brooklyn Bridge walkway and take in breathtaking views of the Manhattan skyline.',
+    lat: 40.706086,
+    lng: -73.996864,
+    difficulty: 'Easy'
+  },
+  {
+    trail_name: 'East River Park Greenway',
+    description: 'Enjoy a bike ride or jog along the East River Park Greenway, offering beautiful riverfront scenery.',
+    lat: 40.712819,
+    lng: -73.974687,
+    difficulty: 'Moderate'
+  },
+  {
+    trail_name: 'Van Cortlandt Park Trail',
+    description: 'Explore the trails of Van Cortlandt Park, featuring wooded areas and the historic Van Cortlandt House Museum.',
+    lat: 40.895861,
+    lng: -73.893473,
+    difficulty: 'Moderate'
+  },
+  {
+    trail_name: 'Jamaica Bay Wildlife Refuge Trail',
+    description: 'Discover the rich biodiversity of Jamaica Bay Wildlife Refuge with its birdwatching and marshland trails.',
+    lat: 40.615097,
+    lng: -73.827187,
+    difficulty: 'Easy'
+  },
+  {
+    trail_name: 'Pelham Bay Park Greenway',
+    description: 'Cycle through Pelham Bay Park Greenway and enjoy a mix of natural beauty and urban surroundings.',
+    lat: 40.858098,
+    lng: -73.807855,
+    difficulty: 'Moderate'
+  }
+
+]
+
+  
 
   # Create the trails using the data
   trails = []
@@ -103,8 +166,8 @@ ApplicationRecord.transaction do
   end
 
   puts "Attaching photos..."
-  Trail.first(3).each_with_index do |trail, index|
-    trail.photo.attach(
+  Trail.all.each_with_index do |trail, index|
+    trail.picture.attach(
       io: URI.open("https://fortrails-seeds.s3.amazonaws.com/trail_#{index + 1}.jpg"), 
       filename: "trail#{index + 1}.jpg"
     )
@@ -112,4 +175,3 @@ ApplicationRecord.transaction do
 
 
   puts "Done!"
-end

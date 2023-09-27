@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import NavigationBar from "../Navigation";
 import "./index.css"
 import logo from './fortrails.png';
-import arrow from './backArrow.png'
+import arrow from './backArrow.png';
 import { useHistory } from 'react-router-dom';
 
 
