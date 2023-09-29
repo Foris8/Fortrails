@@ -27,7 +27,6 @@ export const fetchReviews = () => async dispatch => {
     const res = await csrfFetch(`/api/reviews`);
     if (res.ok) {
         const reviews = await res.json();
-        debugger
 
         dispatch(addReviews(reviews));
     }
@@ -38,8 +37,15 @@ export const getTrailReviews = trailId => state => (
         .filter(review => review.trailId === trailId)
         .map(review => ({
             ...review,
-            author: state.users[review.authorId]?.email
+            firstName: state.users[review.authorId]?.firstName,
+            lastName: state.users[review.authorId]?.lastName,
+            createdAt: new Date(state.users[review.authorId]?.createdAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            }),
         }))
+    
 );
 
 export const createReview = (review) => async dispatch => {
@@ -48,6 +54,7 @@ export const createReview = (review) => async dispatch => {
         body: JSON.stringify(review)
     });
     const data = await response.json();
+    
     dispatch(addReview(data.review));
     dispatch(receiveUser(data.user));
     dispatch(receiveTrail(data.trail));
@@ -78,6 +85,7 @@ function reviewsReducer(state = {}, action) {
         case ADD_REVIEWS:
             const reviews = action.payload;
             return { ...state, ...reviews };
+
         case RECEIVE_TRAIL:
             const trailReview = action.data.reviews
      

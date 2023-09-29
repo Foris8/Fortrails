@@ -1,10 +1,9 @@
 class Api::ReviewsController < ApplicationController
     before_action :require_logged_in
-    wrap_parameters include: Review.attribute_names + [:trailId]
+    wrap_parameters include: Review.attribute_names + [:trailId,:authorId]
 
     def create
         @review = current_user.reviews.new(review_params)
-
         if @review.save
         render :show
         else
@@ -25,6 +24,6 @@ class Api::ReviewsController < ApplicationController
     private
 
     def review_params
-        params.require(:review).permit(:rating, :body, :trail_id)
+        params.require(:review).permit(:rating, :body, :trail_id, :author_id)
     end
 end

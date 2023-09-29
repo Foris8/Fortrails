@@ -9,7 +9,7 @@
 # end
 
 
-json.trails({})
+# json.trails({})
 
 
 @trails.each do |trail|

@@ -1,11 +1,11 @@
 class Review < ApplicationRecord
     validates :body, presence: true
     validates :rating, inclusion: { in: 1..5, message: "must be between 1 and 5" }
-    # validates :bench_id, uniqueness: { scope: :author_id, message: "already has a review from you" }
+    validates :trail_id, uniqueness: { scope: :author_id, message: "already has a review from you" }
     validate :not_a_duplicate
     
     belongs_to :trail
-    belongs_to :author, class_name: :User
+    belongs_to :author, class_name: :User, inverse_of: :reviews
 
     private
 

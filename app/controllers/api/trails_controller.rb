@@ -14,6 +14,14 @@ class Api::TrailsController < ApplicationController
     def create
     end
 
+    def search
+        query = params[:query]
+        #ILIKE is find the sentence has that query
+        @trails = Trail.where('trail_name ILIKE ?',"%#{query}%")
+
+        render :search
+    end
+
     private
     def trail_params
         params.require(:trail).permit(
@@ -23,4 +31,6 @@ class Api::TrailsController < ApplicationController
             :lng
         )
     end
+
+
 end

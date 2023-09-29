@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrails, getTrails } from '../../../store/trail';
-import TrailIndexItem from './TrailIndexItem';
-import './index.css';
+import TrailShowPageItems from './TrailIndexItems';
+import './TrailIndex.css';
 
-
-const TrailIndexPage = ({ highlightedTrail, setHighlightedTrail }) => {
+const TrailShowPageList = ({ }) => {
     const dispatch = useDispatch();
     const trails = useSelector(getTrails);
 
@@ -17,19 +16,18 @@ const TrailIndexPage = ({ highlightedTrail, setHighlightedTrail }) => {
         <div className='trail-item-container'>
             <ul className='trail-item-list'>
                 {trails.map((trail) => {
-                  
-                    return <TrailIndexItem 
-                    trail={trail} 
-                    key={trail.id} 
-                    isHighlighted={highlightedTrail === trail.id}
-                    setHighlightedTrail={setHighlightedTrail}
-                     />
-                
+
+                    return <TrailShowPageItems
+                        trail={trail}
+                        key={trail.id}
     
+                    />
+
+
                 })}
             </ul>
         </div>
     );
 };
 
-export default TrailIndexPage;
+export default TrailShowPageList;

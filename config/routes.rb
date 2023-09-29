@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   namespace :api, defaults: {format: :json} do
+        get "trails/search", to: "trails#search"
         resources :users, only: [:create]
         resources :parks, only: [:index, :show]
         resources :trails, only: [:index,:show,:create]
         resources :reviews, only: [:create, :destroy]
         resource :session, only: [:create, :show, :destroy]
-    
     end
 
     get '*path', to: "static_pages#frontend_index"

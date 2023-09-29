@@ -1,7 +1,7 @@
 # debugger
 
 json.trail do
-    json.extract! @trail, :id, :trail_name, :description, :lat, :lng
+    json.extract! @trail, :id, :trail_name, :description, :lat, :lng, :difficulty, :average_rating, :total_num_rating
 #   json.partial! '/api/trails/trail', trail: @trail
 end
 

@@ -6,29 +6,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 
-const TrailIndexItem = ({ trail, isHighlighted, setHighlightedTrail }) =>{
+const TrailShowPageItems = ({ trail }) => {
     const history = useHistory();
-    const {trailName,description,lat,lng,photoUrl,difficulty,averageRating,totalNumRating} = trail;
-   
+    const { trailName, description, lat, lng, photoUrl, difficulty, averageRating, totalNumRating } = trail;
 
-    const handleClickTrailImg = (e) =>{
+
+    const handleClickTrailImg = (e) => {
         history.push(`/trails/${trail.id}`)
     }
 
-    return(
+    return (
         <div className='trail-contents' >
-            <div className={"trail-photo" + (isHighlighted ? " highlighted" : "")}>
+            <div className={"trail-photo"}>
                 {photoUrl && <img
                     src={photoUrl}
                     alt="Image"
                     className={"trail-item-image"}
                     onClick={handleClickTrailImg}
-                    onMouseEnter={() => setHighlightedTrail(trail.id)}
-                    onMouseLeave={() => setHighlightedTrail(null)}
                 />}
-            
+
             </div>
-                
+
             <div className='trail-content'>
                 <div className='trail-content-rating'>
                     <span>{difficulty} </span>
@@ -36,7 +34,7 @@ const TrailIndexItem = ({ trail, isHighlighted, setHighlightedTrail }) =>{
                     <span>
                         <FontAwesomeIcon icon={faStar} style={{ color: "#59e871", }} />
                     </span>
-                    
+
                     <span> {averageRating} </span>
                     <span>({totalNumRating})</span>
                 </div>
@@ -47,10 +45,10 @@ const TrailIndexItem = ({ trail, isHighlighted, setHighlightedTrail }) =>{
 
 
             </div>
-            
+
         </div>
     )
 
 }
 
-export default TrailIndexItem;
+export default TrailShowPageItems;

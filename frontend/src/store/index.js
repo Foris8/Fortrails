@@ -4,12 +4,15 @@ import userReducer from './userReducer';
 import sessionReducer from './session';
 import trailReducer from './trail';
 import reviewsReducer from './review';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
     users: userReducer,
     session:sessionReducer,
     trails: trailReducer,
-    reviews: reviewsReducer
+    reviews: reviewsReducer,
+    search: searchReducer
+
 });
 
 let enhancer;

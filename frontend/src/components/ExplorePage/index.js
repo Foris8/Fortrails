@@ -31,7 +31,7 @@ const ExplorePage = ()=>{
             <NavigationBar/>
             
             <div className="google-map-module">
-                <TrailIndexPage />
+                <TrailIndexPage highlightedTrail={highlightedTrail} setHighlightedTrail={setHighlightedTrail} />
 
                 <div className="google-map-container">
                     {!isLoaded ? (

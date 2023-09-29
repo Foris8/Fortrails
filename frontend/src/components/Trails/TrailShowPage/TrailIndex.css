@@ -1,9 +1,9 @@
-.trail-item-container{
+.trail-item-container {
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    width: 400px;
+    width: 200px;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -13,29 +13,29 @@
     padding: 0px;
 }
 
-.trail-item-image{
+.trail-item-image {
     border-radius: 12px;
 }
 
-.trail-item.image{
+.trail-item.image {
     overflow-clip-margin: content-box;
     overflow: clip;
 }
 
-.trail-photo.highlighted{
+.trail-photo.highlighted {
     transition: transform 0.15s;
     transform: scale(1.05);
 }
 
-.trail-item-list{
+.trail-item-list {
     padding: 0px;
+    width: 200px;
     overflow-y: auto;
     height: 100vh;
-    margin: 10px;
 
 }
 
-.trail-content-rating{
+.trail-content-rating {
     font-size: 13px;
     font-weight: 400;
     color: #656e5e;
@@ -46,26 +46,23 @@
     white-space: nowrap;
 }
 
-.trail-contents{
-    margin: 10px;
-}
 
 
 
-.trail-contents img{
-    height: 234px;
-    width: 352px;
+
+.trail-contents img {
+    height: 150px;
+    width: 150px;
     min-width: 100%;
     -o-object-fit: cover;
     object-fit: cover;
     transition: transform .3s ease-in-out;
     border-radius: 12px;
     cursor: pointer;
-    
 
 }
 
-.trail-content-name{
+.trail-content-name {
     font-family: Manrope, Arial, sans-serif;
     line-height: 1.5;
     overflow: hidden;
@@ -74,4 +71,9 @@
     font-size: 16px;
     font-weight: 400;
     color: #142800;
+}
+
+.right-trail-content {
+    border-left: solid grey 0.5px;
+    height: auto;
 }

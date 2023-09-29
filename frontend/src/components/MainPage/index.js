@@ -7,7 +7,7 @@ import "./index.css"
 import searchBar from "./search.png"
 import { Link, useParams } from 'react-router-dom';
 import Footer from "../Footer";
-
+import MainSearch from "./MainSearch";
 
 
 function MainPage() {
@@ -21,11 +21,8 @@ function MainPage() {
                     </div>
 
                     <div className="form-group has-feedback has-search">
-                        {/* <div className="search-icon">
-                            <img src={searchBar} alt="Search" />
-                        </div> */}
+                        <MainSearch/>
 
-                        <input type="text" className="SearchBarInput" placeholder="Search by city, park, or trail name" />
                     </div>
 
                     <div>

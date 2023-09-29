@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import { useHistory } from "react-router-dom";
 import './index.css';
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 function TrailMap({
     trails,
@@ -13,22 +14,22 @@ function TrailMap({
     const mapRef = useRef(null);
     const markers = useRef({});
     const history = useHistory();
+    const [routes, setRoutes] = useState([]);
 
     // Create the map
     useEffect(() => {
         if (!map) {
             setMap(new window.google.maps.Map(mapRef.current, {
                 center: {
-                    lat: 40.7128,
-                    lng: -74.0060
+                    lat: 40.769896,
+                    lng: -73.695130
                 }, // New York
-                zoom: 13,
+                zoom: 11,
                 clickableIcons: false,
                 ...mapOptions,
             }));
         }
     }, [mapRef, map, mapOptions]);
-
 
     // Update map markers whenever `trails` changes
     useEffect(() => {
@@ -40,32 +41,16 @@ function TrailMap({
                 const marker = new window.google.maps.Marker({
                     map,
                     position: new window.google.maps.LatLng(trail.lat, trail.lng),
-                    label: {
-    
-                        fontWeight: 'bold',
-                        color: 'black'
-                    },
+                    title: `${trail.trailName}`,
                     icon: {
-                        path: `
-              M 1,0 
-              L 2,0 
-              A 1 1 0 0 1 3,1
-              A 1 1 0 0 1 2,2
-              L 1,2 
-              A 1 1 0 0 1 0,1
-              A 1 1 0 0 1 1,0
-              z
-            `,
-                        fillOpacity: 1,
-                        fillColor: 'white',
-                        strokeColor: 'black',
-                        strokeWeight: 1,
-                        scale: 15,
-                        labelOrigin: new window.google.maps.Point(1.5, 1),
-                        anchor: new window.google.maps.Point(1.5, 1)
-                    },
+                        path: faLocationDot.icon[4], // Use the FontAwesome icon path
+                        fillColor: 'red', // Change the fill color
+                        fillOpacity: 1, // Set the opacity
+                        strokeColor: 'red', // Set the stroke color
+                        strokeWeight: 1, // Set the stroke weight
+                        scale: 0.05,
+                    }
                 });
-                debugger
 
                 Object.entries(markerEventHandlers).forEach(([event, handler]) => {
                     marker.addListener(event, () => handler(trail));
@@ -75,7 +60,7 @@ function TrailMap({
 
             // Remove markers for old trails
             Object.entries(markers.current).forEach(([trailId, marker]) => {
-                if (trails.some(trail => trail.id === trailId)) return;
+                if (trails.some(trail => trail.id.toString() === trailId)) return;
 
                 marker.setMap(null);
                 delete markers.current[trailId];
@@ -86,18 +71,18 @@ function TrailMap({
     // Change the style for bench marker on hover
     useEffect(() => {
         Object.entries(markers.current).forEach(([trailId, marker]) => {
-            const label = marker.getLabel();
             const icon = marker.getIcon();
 
             if (parseInt(trailId) === highlightedTrail) {
-                marker.setLabel({ ...label, color: 'white' });
-                marker.setIcon({ ...icon, fillColor: 'black' });
+                marker.setIcon({ ...icon, fillColor: 'red', scale: 0.07 });
             } else {
-                marker.setLabel({ ...label, color: 'black' });
-                marker.setIcon({ ...icon, fillColor: 'white' });
+                marker.setIcon({ ...icon, fillColor: 'red', scale: 0.05 });
             }
         });
     }, [markers, highlightedTrail]);
+
+    // Create walking paths for all trails
+
 
     return (
         <div ref={mapRef} className="map">
