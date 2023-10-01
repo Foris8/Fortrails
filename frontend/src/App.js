@@ -5,11 +5,13 @@ import SignUpForm from "./components/SignUpForm";
 import MainPage from "./components/MainPage";
 import ExplorePage from "./components/ExplorePage";
 import TrailShowPage from "./components/Trails/TrailShowPage";
+import { useEffect } from "react";
 
 
 
 function App() {
   return (
+    
     <>
       <Switch>
         <Route exact path="/" component={MainPage} />
