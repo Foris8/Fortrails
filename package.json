@@ -3,13 +3,14 @@
     "bootstrap": "^5.3.2",
     "google-maps-react": "^2.0.6"
   },
-  "name": "backend",
+  "name": "fortrails",
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
-  "main": "index.js",
+  
   "directories": {
     "lib": "lib"
   },
+  
   "scripts": {
     "build": "npm install --prefix frontend && npm run build --prefix frontend"
   },
@@ -26,5 +27,6 @@
   "bugs": {
     "url": "https://github.com/Foris8/Fortrails/issues"
   },
-  "homepage": "https://github.com/Foris8/Fortrails#readme"
+  "homepage": "https://github.com/Foris8/Fortrails#readme",
+  "devDependencies": {}
 }
