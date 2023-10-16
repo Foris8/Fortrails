@@ -7,17 +7,6 @@
     position: relative;
 }
 
-.search-icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 30px;
-    /* Adjust the width as needed */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .search-icon img {
     max-width: 100%;
@@ -66,25 +55,7 @@
     margin-right: 12px;
 }
 
-.SearchBarInput{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    box-sizing: border-box;
-    width: 100%;
-    background-color: #fff;
-    border-radius: 9999px;
-    height: 72px;
-    padding-left: 24px;
-    padding-right: 24px;
-    box-shadow: 0 4px 8px -2px rgba(0, 0, 0, .3);
-    font-family: Manrope, Arial, sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #142800;
-    margin-left: 16px;
-}
+
 
 
 .exploreLink{
@@ -191,3 +162,45 @@
 * {
     padding-inline-start: 0;
 }
+
+.search-container {
+    position: relative;
+    display: inline-block;
+    width: 50vw;
+    
+}
+
+
+.SearchBarInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #fff;
+    height: 72px;
+    padding-left: 24px;
+    padding-right: 24px;
+    box-shadow: 0 4px 8px -2px rgba(0, 0, 0, .3);
+    line-height: 1.5;
+    color: #142800;
+    
+    padding-left: 30px;
+}
+
+/* Styling for the search icon */
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #d8dadf;
+    z-index: 10;
+}
+
+.search-container input{
+    border-radius: 30px;
+    
+}
+

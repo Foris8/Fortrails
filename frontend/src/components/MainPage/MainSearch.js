@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearSearchResults, fetchSearchResults } from "../../store/search";
 import { useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
 
 function MainSearch() {
     const [searchText, setSearchText] = useState("");
@@ -30,14 +33,19 @@ function MainSearch() {
     }
 
     return (
-        <>
-            <input type="text" 
-            className="SearchBarInput" 
-            placeholder="Search by city, park, or trail name" 
-            value={searchText}
-            onChange={handleChange}
-            />
-
+        <>  
+            <div className="search-container">
+                <FontAwesomeIcon icon={faMagnifyingGlass} size="2xs" style={{color: "#d8dadf",}} className="search-icon" />
+                <input type="text" 
+                className="SearchBarInput" 
+                placeholder="Search by city, park, or trail name" 
+                value={searchText}
+                onChange={handleChange}
+                style={{ paddingLeft: '40px' }}
+                />
+            </div>
+        
+           
 
             {searchText && 
                 <div className="drop-down-container">
