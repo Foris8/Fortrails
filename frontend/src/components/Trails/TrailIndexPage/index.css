@@ -14,7 +14,9 @@
 }
 
 .trail-item-image{
-    border-radius: 12px;
+    border-radius: 25px;
+    width: 300px;
+    height: 200px;
 }
 
 .trail-item.image{
@@ -32,6 +34,7 @@
     overflow-y: auto;
     height: 100vh;
     margin: 10px;
+    width: 400px;
 
 }
 
@@ -53,13 +56,12 @@
 
 
 .trail-contents img{
-    height: 234px;
-    width: 352px;
-    min-width: 100%;
+    width: 300px;
+    height: 200px;
     -o-object-fit: cover;
     object-fit: cover;
     transition: transform .3s ease-in-out;
-    border-radius: 12px;
+    border-radius: 30px;
     cursor: pointer;
     
 
@@ -74,4 +76,19 @@
     font-size: 16px;
     font-weight: 400;
     color: #142800;
+    margin-bottom: 30px;
 }
+
+
+.main-page-trail-item-container{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.main-page-trail-item-list{
+    display: flex;
+    overflow-x: scroll;
+   
+}
+

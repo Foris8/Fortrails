@@ -12,6 +12,7 @@ import TrailIndexPage from "../Trails/TrailIndexPage";
 import { fetchReviews } from "../../store/review";
 import TrailMap from "../GoogleMap"
 import { useHistory } from "react-router-dom";
+import MainSearch from "../MainPage/MainSearch";
 
 const ExplorePage = ()=>{
     const { isLoaded } = useLoadScript({
@@ -29,8 +30,8 @@ const ExplorePage = ()=>{
         <>
             
             <NavigationBar/>
-            
             <div className="google-map-module">
+                
                 <TrailIndexPage highlightedTrail={highlightedTrail} setHighlightedTrail={setHighlightedTrail} />
 
                 <div className="google-map-container">

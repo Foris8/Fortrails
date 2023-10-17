@@ -8,7 +8,8 @@ import searchBar from "./search.png"
 import { Link, useParams } from 'react-router-dom';
 import Footer from "../Footer";
 import MainSearch from "./MainSearch";
-
+import MainTrailIndex from "../Trails/TrailIndexPage/MainTrails";
+import RollingImages from "./RollingImg";
 
 function MainPage() {
     return(
@@ -29,9 +30,20 @@ function MainPage() {
                         <Link to="/explore" className="exploreLink">Explore nearby trails</Link>
                     </div>
                 </div>
-
+        
                 <BackgroundImageChanger className="ImgChanger" />
             </div>
+
+            <div className="main-page-middle-container">
+                <p>Local favorites nearby</p>
+                <div className="main-page-trail-container">
+                    <MainTrailIndex/>
+                </div>
+
+                <RollingImages/>
+            </div>
+            
+            
 
             <Footer/>
       
