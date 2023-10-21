@@ -35,11 +35,13 @@ function NavigationBar(){
                 </Link>
                 <p id="logo-title" onClick={handleTitleClick}>ForTrails</p>
                 <p onClick={handleExploreClick}>Explore</p>
-                <p>Saved</p>
+                <p onClick={handleExploreClick}>Saved</p>
             </div>
             
             <div className="right-panel">
-                <p>Help</p>
+                <a href="https://www.linkedin.com/in/fanyitang/" target="_blank" rel="noopener noreferrer">
+                    <p>Help</p>
+                </a>
                 {sessionUser ? <button onClick={handleButtonClick} id="logout-button" >
                     Log Out
                 </button> : <Link to="/login" id="login-button">Log In</Link>}

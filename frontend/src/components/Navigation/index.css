@@ -128,6 +128,13 @@ nav {
     background-color: rgba(90, 101, 77, 0.381);
 }
 
+a:hover p {
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+}
 
 
 

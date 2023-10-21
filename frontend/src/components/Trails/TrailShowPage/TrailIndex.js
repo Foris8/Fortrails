@@ -9,9 +9,11 @@ const TrailShowPageList = ({ }) => {
     const trails = useSelector(getTrails);
 
 
+
     useEffect(() => {
         dispatch(fetchTrails());
     }, [dispatch]);
+
     return (
         <div className='trail-item-container'>
             <ul className='trail-item-list'>

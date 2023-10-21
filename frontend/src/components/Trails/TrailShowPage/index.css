@@ -6,7 +6,7 @@
     width: 100%;
     height: 100%;
     font-family: Arial, sans-serif;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 1px;
     background-color: #f9f9f9;
@@ -15,7 +15,7 @@
 }
 
 .main-content-container {
-    width: 810px;
+    width: 1000px;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -24,7 +24,7 @@
 .trail-img {
     position: relative;
     width: 100%;
-    height: auto;
+    height: 500px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     /* Optionally, set the other corners to 0 for square corners */
@@ -34,7 +34,7 @@
 
 .trail-title{
     position: absolute;
-    top: 12%;
+    top: 38vh;
     font-family: Percent,Beatrice,Arial,sans-serif;
     font-size: 32px;
     font-weight: 400;
@@ -158,10 +158,6 @@
     /* Hovered delete button color */
 }
 
-.goolge-show-map{
-    display: flex;
-    justify-content: center;
-}
 
 /* index.css or your custom CSS file */
 

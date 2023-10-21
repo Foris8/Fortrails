@@ -76,7 +76,6 @@
     font-size: 16px;
     font-weight: 400;
     color: #142800;
-    margin-bottom: 30px;
 }
 
 
@@ -90,5 +89,18 @@
     display: flex;
     overflow-x: scroll;
    
+}
+
+.trail-content-park-name span{
+    
+    font-family: Manrope, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #656e5e;
+    font-size: 13px;
+}
+
+.trail-content-park-name{
+    margin-bottom: 30px;
 }
 

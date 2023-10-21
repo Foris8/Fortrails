@@ -6,6 +6,7 @@ import { receiveUser } from "./userReducer.js";
 const ADD_REVIEW = 'reviews/addReview';
 const ADD_REVIEWS = 'reviews/addReviews';
 const REMOVE_REVIEW = 'reviews/removeReview';
+const UPDATE_REVIEW = 'reviews/updateReview';
 
 const addReview = review => ({
     type: ADD_REVIEW,
@@ -20,6 +21,11 @@ const removeReview = review => ({
 export const addReviews = reviews => ({
     type: ADD_REVIEWS,
     payload: reviews
+});
+
+const updateReview = review => ({
+    type: UPDATE_REVIEW,
+    payload: review
 });
 
 
@@ -71,6 +77,20 @@ export const destroyReview = (reviewId) => async dispatch => {
     return response;
 };
 
+export const editReview = (review) => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/${review.id}`, {
+        method: "PUT",
+        body: JSON.stringify(review)
+    });
+    const data = await response.json();
+
+    dispatch(updateReview(data.review));
+    dispatch(receiveUser(data.user));
+    dispatch(receiveTrail(data.trail));
+    return response;
+};
+
+
 function reviewsReducer(state = {}, action) {
     switch (action.type) {
         case ADD_REVIEW: {
@@ -88,9 +108,12 @@ function reviewsReducer(state = {}, action) {
 
         case RECEIVE_TRAIL:
             const trailReview = action.data.reviews
-     
-    
             return { ...state, ...trailReview}
+            
+        case UPDATE_REVIEW: {
+            const review = action.payload;
+            return { ...state, [review.id]: review };
+        }
         default:
             return state;
     }

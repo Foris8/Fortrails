@@ -15,6 +15,46 @@ function TrailMap({
     const markers = useRef({});
     const history = useHistory();
     const [routes, setRoutes] = useState([]);
+    const directionsService = new window.google.maps.DirectionsService();
+    
+    function displayRoute(trail) {
+        const request = {
+            origin: new window.google.maps.LatLng(trail.startLat, trail.startLng),
+            destination: new window.google.maps.LatLng(trail.endLat, trail.endLng),
+            travelMode: 'WALKING'
+        };
+
+        directionsService.route(request, (result, status) => {
+            if (status === 'OK') {
+                const directionsRenderer = new window.google.maps.DirectionsRenderer({
+                    map: map,
+                    suppressMarkers: true, // We have our own markers, so suppress default markers
+                    polylineOptions: {
+                        strokeColor: '#038C3E',
+                        strokeOpacity: 0.7,
+                        strokeWeight: 4,
+                        icons: [{
+                            icon: {
+                                path: 'M 0,-1 0,1',
+                                strokeOpacity: 1,
+                                scale: 4
+                            },
+                            offset: '0',
+                            repeat: '20px'
+                        }]
+                    },
+                    preserveViewport: true
+                });
+                directionsRenderer.setDirections(result);
+                setRoutes((prevRoutes) => [...prevRoutes, directionsRenderer]); // Save the renderer to the state to manage it later
+            } else {
+                console.error(`Directions request failed due to ${status}`);
+            }
+        });
+    }
+
+
+    
 
     // Create the map
     useEffect(() => {
@@ -75,13 +115,19 @@ function TrailMap({
 
             if (parseInt(trailId) === highlightedTrail) {
                 marker.setIcon({ ...icon, fillColor: 'red', scale: 0.07 });
+                routes.forEach(routeRenderer => routeRenderer.setMap(null));
+                setRoutes([]);
+
+                // Display the route for the selected trail
+                displayRoute(trails[trailId-1]);
             } else {
                 marker.setIcon({ ...icon, fillColor: 'red', scale: 0.05 });
+                routes.forEach(routeRenderer => routeRenderer.setMap(null));
+                setRoutes([]);
             }
         });
     }, [markers, highlightedTrail]);
 
-    // Create walking paths for all trails
 
 
     return (
@@ -90,6 +136,9 @@ function TrailMap({
         </div>
     );
 }
+
+
+
 
 function TrailMapWrapper(props) {
     return (

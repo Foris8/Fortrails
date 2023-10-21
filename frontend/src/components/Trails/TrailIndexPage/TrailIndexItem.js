@@ -8,7 +8,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 const TrailIndexItem = ({ trail, isHighlighted, setHighlightedTrail }) =>{
     const history = useHistory();
-    const {trailName,description,lat,lng,photoUrl,difficulty,averageRating,totalNumRating} = trail;
+    const {trailName,description,lat,lng,photoUrl,difficulty,averageRating,totalNumRating, parkName} = trail;
    
 
     const handleClickTrailImg = (e) =>{
@@ -44,7 +44,10 @@ const TrailIndexItem = ({ trail, isHighlighted, setHighlightedTrail }) =>{
                 <div className='trail-content-name'>
                     <span>{trailName}</span>
                 </div>
-
+    
+                <div className='trail-content-park-name'>
+                    <span>{parkName}</span>
+                </div>
 
             </div>
             

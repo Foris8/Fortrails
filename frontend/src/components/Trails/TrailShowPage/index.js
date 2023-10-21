@@ -23,6 +23,7 @@ const TrailShowPage = () =>{
     const sessionUser = useSelector(state => state.session.user);
     const trail = useSelector(state => state.trails[trailId]);
     const reviews = useSelector(getTrailReviews(parseInt(trailId))); 
+
     useEffect(() => {
         dispatch(fetchTrail(trailId));
     }, [trailId, dispatch]);
@@ -35,7 +36,7 @@ const TrailShowPage = () =>{
         return null;
     }
 
-    const { trailName, description, lat, lng, photoUrl, difficulty, averageRating, totalNumRating } = trail;
+    const { trailName, description, lat, lng, photoUrl, difficulty, averageRating, totalNumRating, parkName } = trail;
     const hasReviewed = sessionUser && reviews.some(review => review.authorId === sessionUser.id);
 
     return(
@@ -45,13 +46,22 @@ const TrailShowPage = () =>{
             <div className='main-content-box'>
 
                 <div className='main-content-container'>
-                    <img src="https://images.alltrails.com/eyJidWNrZXQiOiJhc3NldHMuYWxsdHJhaWxzLmNvbSIsImtleSI6InVwbG9hZHMvcGhvdG8vaW1hZ2UvNTA2MDY1NDUvMGJmMTA0MDZjZDYwOGI0YWE2NGI5ZTBiMmU3ODRmMzAuanBnIiwiZWRpdHMiOnsidG9Gb3JtYXQiOiJqcGVnIiwicmVzaXplIjp7IndpZHRoIjoyMDQ0LCJoZWlnaHQiOjYyNCwiZml0IjoiY292ZXIifSwicm90YXRlIjpudWxsLCJqcGVnIjp7InRyZWxsaXNRdWFudGlzYXRpb24iOnRydWUsIm92ZXJzaG9vdERlcmluZ2luZyI6dHJ1ZSwib3B0aW1pc2VTY2FucyI6dHJ1ZSwicXVhbnRpc2F0aW9uVGFibGUiOjN9fX0=" alt="Long Path and Shore Loop, Palisades Interstate Park, Alpine, New Jersey, United States | AllTrails.com" className='trail-img'/>
+                    <img src={photoUrl} className='trail-img'/>
                     
                     <div className='trail-title'>
                         <div>
                             <span style={{ fontSize: '30px' } }>
                                 {trailName}
+                               
                             </span>
+    
+                        </div>
+                        <div>
+                            <span style={{ fontSize: '15px' } }>
+                                {parkName}
+                               
+                            </span>
+    
                         </div>
 
                         <div className='trail-title-rating'>
@@ -70,6 +80,7 @@ const TrailShowPage = () =>{
                     <div className='bottom-container'>
 
                         <div className='left-trail-content'>
+                            <p>Description:</p>
                             <p title='trail-description'>{trail.description}</p>
                             
                             <div className="rating-and-button-container">
@@ -97,14 +108,17 @@ const TrailShowPage = () =>{
                                         </div>
                                         <p className='review-text'>{review.body}</p>
                                         {review.authorId === sessionUser?.id && (
-                                            <button
-                                                onClick={() => dispatch(destroyReview(review.id))}
-                                                className='delete-icon'
-                                            >
-                                                Delete
-                                                <i className="fa-solid fa-rectangle-xmark" />
-                                            </button>
-                                        )}
+                                                <>
+                                            
+                                                    <button
+                                                        onClick={() => dispatch(destroyReview(review.id))}
+                                                        className='delete-icon'
+                                                    >
+                                                        Delete
+                                                        <i className="fa-solid fa-rectangle-xmark" />
+                                                    </button>
+                                                </>
+                                            )}
                                     </div>
                                 ))}
                             </div>

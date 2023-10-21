@@ -10,7 +10,6 @@ const TrailShowPageItems = ({ trail }) => {
     const history = useHistory();
     const { trailName, description, lat, lng, photoUrl, difficulty, averageRating, totalNumRating } = trail;
 
-
     const handleClickTrailImg = (e) => {
         history.push(`/trails/${trail.id}`)
     }

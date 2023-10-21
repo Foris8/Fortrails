@@ -21,6 +21,20 @@ class Api::ReviewsController < ApplicationController
         render :show
     end
 
+    def update
+        @review = current_user.reviews.find(params[:id])
+        unless @review
+            render json: { message: 'Unauthorized' }, status: :unauthorized
+            return
+        end
+
+        if @review.update(review_params)
+            render :show
+        else
+            render json: { errors: @review.errors.full_messages }, status: :unprocessable_entity
+        end
+    end
+
     private
 
     def review_params

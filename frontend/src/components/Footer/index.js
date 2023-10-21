@@ -33,16 +33,16 @@ function Footer() {
                     <div className="footer-section">
                         <h3>Company</h3>
                         <ul>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="https://fanyitang.io/">About</a></li>
+                            <li><a href="https://fanyitang.io/">Contact</a></li>
                         </ul>
                     </div>
                 </div>
                 <div className="footer-social">
                     <h3>Follow</h3>
                     <ul>
-                        <li><a href="#"><FontAwesomeIcon icon={faLinkedin} /></a></li>
-                        <li><a href="#"><FontAwesomeIcon icon={faGithub} /></a></li>
+                        <li><a href="https://www.linkedin.com/in/fanyitang/"><FontAwesomeIcon icon={faLinkedin} /></a></li>
+                        <li><a href="https://github.com/Foris8"><FontAwesomeIcon icon={faGithub} /></a></li>
                     </ul>
                 </div>
             </div>

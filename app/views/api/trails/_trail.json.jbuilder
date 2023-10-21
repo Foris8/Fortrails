@@ -6,7 +6,12 @@ json.extract! trail,
   :lng,
   :difficulty,
   :average_rating,
-  :total_num_rating
+  :total_num_rating,
+  :start_lat,
+  :start_lng,
+  :end_lat,
+  :end_lng,
+  :park_name
 
   
 if trail.picture.attached?

@@ -11,10 +11,12 @@
 #  updated_at  :datetime         not null
 #
 class Trail < ApplicationRecord
-    validates :trail_name, :description, :lat, :lng, presence:true
+    validates :trail_name, :description, :lat, :lng, :start_lat, :start_lng, :end_lat, :end_lng, presence:true
 
     has_many :reviews, dependent: :destroy
     has_one_attached :picture
+    has_many :likes, dependent: :destroy
+    has_many :likers, through: :likes, source: :user
 
 
     def average_rating
