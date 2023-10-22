@@ -9,6 +9,14 @@ Fortrails is your go-to digital companion for trail exploration and adventure. I
 ## Background and Overview
 As an enthusiastic student of App Academy, I embarked on an ambitious journey to create a comprehensive full-stack application from scratch. The task ahead was challenging: conceptualizing, designing, and deploying an end-to-end solution, all within a short span of two weeks. This project served not only as a testament to the rigorous training and skills acquired at App Academy but also as an opportunity to push boundaries and demonstrate rapid application development capabilities. From ideation to execution, every line of code and design choice was made solely by me, ensuring a personal touch and a deep understanding of the project's nuances. The result? Fortrails, a trail discovery platform that aims to be every adventurer's best companion.
 
+## Table of Contents
+1. [Introduction](#fortrails)
+2. [Live Site](#live-site)
+3. [Background and Overview](#background-and-overview)
+4. [Technologies and Technical Challenges](#technologies-and-technical-challenges)
+5. [Fortrails Technical Challenges](#fortrails-technical-challenges)
+6. [Functionality and MVP](#functionality-and-mvp)
+7. [Features To Be Implemented](#features-to-be-implemented)
 
 ## Technologies and Technical Challenges
 
@@ -55,21 +63,21 @@ Creating Fortrails presented a myriad of intricate technical challenges, especia
 ### 1. **Read Trails:**
    - **Read:** Display a list of all trails, with essential details available at a glance and the option to delve into comprehensive information.
 <p align="center">
-  <img src="backend/mapshow.png" />
+  <img src="./mapshow.png" />
 </p>
 
 ### 2. **Search Trails:**
    - Users can search for specific trails using keywords, location, difficulty levels, and other relevant criteria.
    - Advanced search functionality provides users the flexibility to find trails tailored to their preferences.
 <p align="center">
-  <img src="backend/fortrailSearch.gif" />
+  <img src="./fortrailSearch.gif" />
 </p>
 
 ### 3. **User Authentication:**
    - **Login:** Secure user login with encrypted password storage and validation.
    - **Logout:** Safe and straightforward user logout functionality ensuring user data security.
 <p align="center">
-  <img src="backend/signin.png" />
+  <img src="./signin.png" />
 </p>
 
 ### 4. **Google Map API Integration:**
@@ -87,7 +95,7 @@ Creating Fortrails presented a myriad of intricate technical challenges, especia
    - **Read:** Display all reviews for a trail, giving prospective visitors valuable insights.
    - **Delete:** Users can delete their reviews, keeping the feedback section relevant and up-to-date.
 <p align="center">
-  <img src="backend/writeReview.png" />
+  <img src="./writeReview.png" />
 </p>
 
 
