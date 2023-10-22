@@ -2,9 +2,8 @@
 Fortrails is your go-to digital companion for trail exploration and adventure. Inspired by the widely popular Alltrails, Fortrails offers users a platform to search for nearby hiking, biking, and walking trails. Whether you're an avid hiker looking for your next challenging route, or a family wanting a serene nature walk, Fortrails connects you to the best trails suited to your preferences.
 
 
-# Live Site
-[Fortrails](https://fortrails-web-service.onrender.com/)
-
+# Live Site 
+[Fortrails](https://fortrails-web-service.onrender.com/) (The website might take a few moments to load initially)
 
 
 ## Background and Overview
@@ -21,11 +20,7 @@ The technologies I will use in Fortrails:
 - Authentication: CSRF
 - API: Google Map API
 
-#### Technical Challenges:
 
-Certainly! Here's the Fortrails Technical Challenges breakdown in Markdown format:
-
----
 
 ## Fortrails Technical Challenges
 
@@ -57,19 +52,25 @@ Creating Fortrails presented a myriad of intricate technical challenges, especia
 
 **Fortrails** promises to offer a comprehensive platform for trail enthusiasts. Here’s a breakdown of its core functionalities and the minimum viable product (MVP) features:
 
-### 1. **CRUD Trails:**
-   - **Create:** Users can add new trails, providing details like trail name, description, distance, elevation, and associated photos.
+### 1. **Read Trails:**
    - **Read:** Display a list of all trails, with essential details available at a glance and the option to delve into comprehensive information.
-   - **Update:** Trail contributors can modify trail details, ensuring up-to-date and accurate information.
-   - **Delete:** Users have the ability to remove trails, ensuring the platform remains clutter-free and relevant.
+<p align="center">
+  <img src="backend/mapshow.png" />
+</p>
 
 ### 2. **Search Trails:**
    - Users can search for specific trails using keywords, location, difficulty levels, and other relevant criteria.
    - Advanced search functionality provides users the flexibility to find trails tailored to their preferences.
+<p align="center">
+  <img src="backend/fortrailSearch.gif" />
+</p>
 
 ### 3. **User Authentication:**
    - **Login:** Secure user login with encrypted password storage and validation.
    - **Logout:** Safe and straightforward user logout functionality ensuring user data security.
+<p align="center">
+  <img src="backend/signin.png" />
+</p>
 
 ### 4. **Google Map API Integration:**
    - Interactive maps show the geographical location of each trail.
@@ -85,5 +86,24 @@ Creating Fortrails presented a myriad of intricate technical challenges, especia
    - **Create:** Users can share their experiences by writing reviews for trails they've visited.
    - **Read:** Display all reviews for a trail, giving prospective visitors valuable insights.
    - **Delete:** Users can delete their reviews, keeping the feedback section relevant and up-to-date.
+<p align="center">
+  <img src="backend/writeReview.png" />
+</p>
 
-By focusing on these MVP features, **Fortrails** aims to deliver a platform that is both user-centric and functionally robust, providing trail enthusiasts with all the tools they need to plan and share their adventures.
+
+## Features To Be Implemented:
+
+### 1. **Trail Likes:**
+Users should be able to express their appreciation for a trail by "liking" it.
+
+### 2. **Saved Trails:**
+Allow users to save trails for future reference.
+
+### 3. **User-Created Trails:**
+Empower users to contribute by creating their own trails.
+
+### 4. **Weather Feature:**
+Integrate real-time weather data for each trail, helping users plan their visit better.
+
+
+
