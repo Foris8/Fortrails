@@ -180,3 +180,7 @@ input[type=password] {
     letter-spacing: 0.00938em;
     border-style: solid;
 }
+
+.missing-value {
+    border: 1px solid red !important;
+}

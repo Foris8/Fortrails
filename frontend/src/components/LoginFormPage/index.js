@@ -10,8 +10,8 @@ import NavigationBar from "../Navigation";
 function LoginFormPage(){
     const dispatch = useDispatch();
     const [email,setEmail] = useState();
-    const [password,setPassowrd] = useState();
-    const [errors, setErrors] = useState([]);
+    const [password,setPassword] = useState();
+    const [errors, setErrors] = useState({ email: "", password: "", general: [] });
     //check if there is an user already logged in
     const sessionUser = useSelector(state => state.session.user);
 
@@ -20,25 +20,38 @@ function LoginFormPage(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setErrors([]);
+        let newErrors = { email: "", password: "", general: [] };
+
+        if (!email) newErrors.email = "Email cannot be blank";
+        if (!password) newErrors.password = "Password cannot be blank";
+
+        if (newErrors.email || newErrors.password) {
+            setErrors(newErrors);
+            return;
+        }
+
+        setErrors({ email: "", password: "", general: [] });
+
         return dispatch(sessionActions.login({ email, password }))
             .catch(async (res) => {
                 let data;
                 try {
-                    // .clone() essentially allows you to read the response body twice
                     data = await res.clone().json();
                 } catch {
-                    data = await res.text(); // Will hit this case if, e.g., server is down
+                    data = await res.text();
                 }
-                if (data?.errors) setErrors(data.errors);
-                else if (data) setErrors([data]);
-                else setErrors([res.statusText]);
+                if (data?.errors) newErrors.general = data.errors;
+                else if (data) newErrors.general = [data];
+                else newErrors.general = [res.statusText];
+
+                setErrors(newErrors);
             });
     };
 
+
     const handleDemoLogin = (e) =>{
         setEmail('demo@user.io');
-        setPassowrd('password');
+        setPassword('password');
     }
 
     if (sessionUser){
@@ -60,7 +73,7 @@ function LoginFormPage(){
                         <h1>
                             Welcome back
                             <br />
-                            Log in and start exloring.
+                            Log in and start exploring.
                         </h1>
 
                         <form onSubmit={handleSubmit} className="LoginInFormComponent">
@@ -68,14 +81,17 @@ function LoginFormPage(){
 
                             <div className="emailInputBox MuiInputBase-root">
                                 <input type="text" id="emailInputBox" name="email" value={email} placeholder="Email" onChange={(e) => { setEmail(e.target.value) }} />
+                                
                             </div>
+                            {errors.email && <span className="error">{errors.email}</span>}
 
                             <div className="passwordInputBox MuiInputBase-root">
-                                <input type="password" id="passwordInputBox" name="password" placeholder="Passoword" value={password} onChange={(e) => { setPassowrd(e.target.value) }} />
+                                <input type="password" id="passwordInputBox" name="password" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
                             </div>
+                            {errors.password && <span id="error">{errors.password}</span>}
 
                             <ul>
-                                {errors.map(error => <li key={error}>{error}</li>)}
+                                {errors.general && <div id="error">{errors.general}</div>}
                             </ul>
                             
                             <button type="submit" className="login-button MuiInputBase-roo">Log In</button>

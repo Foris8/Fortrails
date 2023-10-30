@@ -10,7 +10,7 @@ function ReviewForm({ bench, closeForm }) {
     const history = useHistory();
 
     const redirectToLogIn = () => {
-        history.push('/login'); // Replace '/some-page' with the route you want to navigate to.
+        history.push('/login'); 
     };
 
     useEffect(() => {

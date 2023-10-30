@@ -19,12 +19,15 @@ function SignUpForm(){
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const history = useHistory();
+    const [submitted, setSubmitted] = useState(false);
+
     
 
     if (sessionUser) return <Redirect to="/" />;
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setSubmitted(true);
         if (password === confirmPassword) {
             setErrors([]);
             return dispatch(sessionActions.signup({ email, firstName,lastName, password }))
@@ -80,44 +83,43 @@ function SignUpForm(){
                             type="text"
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
-                            required
+                            className={submitted && !firstName ? 'missing-value' : ''}
                             placeholder="First Name"
                         />
+
                        
                         <input
                             type="text"
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
-                            required
+                            className={submitted && !lastName ? 'missing-value' : ''}
                             placeholder="Last Name"
                         />
-              
 
                         <input
                             type="text"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            required
+                            className={submitted && !email ? 'missing-value' : ''}
                             placeholder="Email address"
                         />
 
- 
                         <input
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            required
+                            className={submitted && !password ? 'missing-value' : ''}
                             placeholder="Password"
                         />
-   
 
                         <input
                             type="password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            required
+                            className={submitted && !confirmPassword ? 'missing-value' : ''}
                             placeholder="Confirm password"
-                            />
+                        />
+
 
                         <ul>
                             {errors.map((error) => <li key={error}>{error}</li>)}
