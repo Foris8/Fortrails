@@ -4,15 +4,20 @@ import { fetchTrails, getTrails } from '../../../store/trail';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import TrailLikeButton from './TrailLikeButton';
 
 
 const TrailShowPageItems = ({ trail }) => {
     const history = useHistory();
     const { trailName, description, lat, lng, photoUrl, difficulty, averageRating, totalNumRating } = trail;
+    
+    
 
     const handleClickTrailImg = (e) => {
         history.push(`/trails/${trail.id}`)
     }
+
+    
 
     return (
         <div className='trail-contents' >
@@ -27,6 +32,7 @@ const TrailShowPageItems = ({ trail }) => {
             </div>
 
             <div className='trail-content'>
+                <TrailLikeButton trailId={trail.id} />
                 <div className='trail-content-rating'>
                     <span>{difficulty} </span>
                     <span>• </span>

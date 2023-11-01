@@ -48,6 +48,8 @@ class User < ApplicationRecord
         session_token
     end
 
+    
+
     private
 
     def generate_unique_session_token
@@ -56,5 +58,7 @@ class User < ApplicationRecord
             return token unless User.exists?(session_token: token)
         end
     end
+
+    
 
 end

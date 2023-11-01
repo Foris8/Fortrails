@@ -6,10 +6,16 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
         get "trails/search", to: "trails#search"
-        resources :users, only: [:create]
+        resources :users, only: [:create] do
+          member do
+            get 'liked_trails', to: 'users#liked_trails'
+          end
+        end
         resources :parks, only: [:index, :show]
         resources :trails, only: [:index,:show,:create]
         resources :reviews, only: [:create, :destroy, :update]
+        resources :likes, only: [:create, :destroy]
+        delete 'likes', to: 'likes#destroy'
         resource :session, only: [:create, :show, :destroy]
     end
 

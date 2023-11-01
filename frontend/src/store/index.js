@@ -5,13 +5,15 @@ import sessionReducer from './session';
 import trailReducer from './trail';
 import reviewsReducer from './review';
 import searchReducer from './search';
+import likesReducer from './like';
 
 const rootReducer = combineReducers({
     users: userReducer,
     session:sessionReducer,
     trails: trailReducer,
     reviews: reviewsReducer,
-    search: searchReducer
+    search: searchReducer,
+    likes: likesReducer,
 
 });
 
