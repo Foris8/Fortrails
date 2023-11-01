@@ -19,8 +19,9 @@ const TrailLikeButton = ({ trailId }) => {
 
 
 
-    const handleLikeClick = () => {
-        dispatch(toggleLike(trailId, isLiked, currentUserId));
+    const handleLikeClick = async () => {
+        await dispatch(toggleLike(trailId, isLiked, currentUserId));
+        dispatch(fetchLikedTrails(userId)); // Fetch the likes trail after click the btn
     };
 
     return (
@@ -28,6 +29,6 @@ const TrailLikeButton = ({ trailId }) => {
             <FontAwesomeIcon icon={faHeart} style={{ color: isLiked ? 'red' : 'grey' }} />
         </button>
     );
-};
+}; 
 
 export default TrailLikeButton;

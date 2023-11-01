@@ -19,11 +19,12 @@ class Api::UsersController < ApplicationController
 
     def liked_trails
         user = User.find(params[:id])
-        liked_trails = user.liked_trails # Assuming you have an association set up
+        liked_trails = user.liked_trails 
+        
         render json: { likedTrails: liked_trails }
     end
 
-    
+
 
 
     private
