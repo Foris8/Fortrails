@@ -12,7 +12,7 @@ Rails.application.routes.draw do
           end
         end
         resources :parks, only: [:index, :show]
-        resources :trails, only: [:index,:show,:create]
+        resources :trails
         resources :reviews, only: [:create, :destroy, :update]
         resources :likes, only: [:create, :destroy]
         delete 'likes', to: 'likes#destroy'

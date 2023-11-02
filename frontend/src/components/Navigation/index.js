@@ -27,6 +27,10 @@ function NavigationBar(){
         history.push('/')
     }
 
+    const handleCreateTrail = (e) =>{
+        history.push("/createTrail")
+    }
+
     return (
         <nav>
             <div className="left-panel">
@@ -36,6 +40,7 @@ function NavigationBar(){
                 <p id="logo-title" onClick={handleTitleClick}>ForTrails</p>
                 <p onClick={handleExploreClick}>Explore</p>
                 <p onClick={handleExploreClick}>Saved</p>
+                <p onClick={handleCreateTrail}>Create Trails</p>
             </div>
             
             <div className="right-panel">

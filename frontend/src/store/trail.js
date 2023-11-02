@@ -6,6 +6,71 @@ import { addReviews } from "./review.js";
 export const RECEIVE_TRAILS = 'trails/RECEIVE_TRAILS';
 export const RECEIVE_TRAIL = 'trails/RECEIVE_TRAIL';
 
+
+export const ADD_TRAIL = 'trails/ADD_TRAIL';
+export const REMOVE_TRAIL = 'trails/REMOVE_TRAIL';
+export const UPDATE_TRAIL = 'trails/UPDATE_TRAIL';
+
+
+export const addTrail = trail => ({
+    type: ADD_TRAIL,
+    trail
+});
+
+export const removeTrail = trailId => ({
+    type: REMOVE_TRAIL,
+    trailId
+});
+
+export const updateTrail = trail => ({
+    type: UPDATE_TRAIL,
+    trail
+});
+
+
+export const createTrail = trailData => async dispatch => {
+    
+    const res = await csrfFetch(`/api/trails`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(trailData)
+    });
+
+    if (res.ok) {
+        const trail = await res.json();
+        dispatch(addTrail(trail));
+    }
+};
+
+export const deleteTrail = trailId => async dispatch => {
+    const res = await csrfFetch(`/api/trails/${trailId}`, {
+        method: 'DELETE'
+    });
+
+    if (res.ok) {
+        dispatch(removeTrail(trailId));
+    }
+};
+
+export const editTrail = (trailId, trailData) => async dispatch => {
+    const res = await csrfFetch(`/api/trails/${trailId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(trailData)
+    });
+
+    if (res.ok) {
+        const trail = await res.json();
+        dispatch(updateTrail(trail));
+    }
+};
+
+
+
 //action creater
 export const receiveTrails = trails =>{
     return({
@@ -65,9 +130,17 @@ const trailReducer = (state={},action) =>{
         case RECEIVE_TRAILS:
             return {...action.trails};
         case RECEIVE_TRAIL:
-        
             nextState[action.data.id] = action.data;
             return nextState
+        case ADD_TRAIL:
+            nextState[action.trail.id] = action.trail;
+            return nextState;
+        case REMOVE_TRAIL:
+            delete nextState[action.trailId];
+            return nextState;
+        case UPDATE_TRAIL:
+            nextState[action.trail.id] = action.trail;
+            return nextState;
         default:
             return state;
     }
