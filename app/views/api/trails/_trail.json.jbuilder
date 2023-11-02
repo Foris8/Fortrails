@@ -1,3 +1,4 @@
+
 json.extract! trail, 
   :id, 
   :trail_name,
@@ -13,9 +14,8 @@ json.extract! trail,
   :end_lng,
   :park_name
 
-  
 if trail.picture.attached?
   json.photo_url url_for(trail.picture) 
 else
-  json.photo_url "/trail_placeholder.jpg"
+  json.photo_url "https://fortrails-seeds.s3.amazonaws.com/trail_14.jpg"
 end
