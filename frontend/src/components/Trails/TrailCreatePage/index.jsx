@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createTrail } from '../../../store/trail';
+import { useDispatch,useSelector } from 'react-redux';
+import { createTrail,deleteTrail,editTrail } from '../../../store/trail';
 import NavigationBar from '../../Navigation';
+
 
 const CreateTrailPage = () => {
     const dispatch = useDispatch();
@@ -16,6 +17,31 @@ const CreateTrailPage = () => {
     const [endLng, setEndLng] = useState('');
     const [difficulty, setDifficulty] = useState("Easy");
     const [picture, setPicture] = useState(null);
+    const [trailId, setTrailId] = useState(null);
+    const userTrails = useSelector((state) => state.trails); 
+
+    const handleDelete = () => {
+        if (trailId) {
+            dispatch(deleteTrail(trailId));
+        }
+    };
+
+     const handleUpdate = (trailId) => {
+        const trailData = {
+            trail_name: trailName,
+            description,
+            park_name: parkName,
+            lat,
+            lng,
+            start_lat: startLat,
+            start_lng: startLng,
+            end_lat: endLat,
+            end_lng: endLng,
+            difficulty,
+            picture
+        };
+        dispatch(editTrail(trailId, trailData));
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -42,7 +68,6 @@ const CreateTrailPage = () => {
             <div className='create-trail-page'>
                 <h2>Create a New Trail</h2>
                 <form onSubmit={handleSubmit}>
-
                     <div>
                         <label>Trail Name:</label>
                         <input
@@ -137,7 +162,21 @@ const CreateTrailPage = () => {
                         </select>
                     </div>
                     <button type="submit">Create Trail</button>
+                    <button type="button" onClick={() => handleUpdate(trailId)}>Update Trail</button>
+                    <button type="button" onClick={() => handleDelete(trailId)}>Delete Trail</button>
+
                 </form>
+
+                <h3>My Trails</h3>
+                {/* <ul>
+                    {userTrails.map((trail) => (
+                        <li key={trail.id}>
+                            {trail.trail_name}
+                            <button onClick={() => handleDelete(trail.id)}>Delete</button>
+                            <button onClick={() => handleUpdate(trail.id)}>Update</button>
+                        </li>
+                    ))}
+                </ul> */}
             </div>
         </>
     );

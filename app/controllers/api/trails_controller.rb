@@ -13,25 +13,29 @@ class Api::TrailsController < ApplicationController
 
     def update
         if @trail.update(trail_params)
-        render json: @trail
+        render 'api/trails/show'
         else
         render json: @trail.errors, status: :unprocessable_entity
         end
     end
 
     def create
-        @trail = Trail.new(trail_params)
+        @trail = current_user.trails.build(trail_params)
         if @trail.save
-            render 'api/trails/show', status: :created, location: api_trail_url(@trail)
+        render 'api/trails/show', status: :created, location: api_trail_url(@trail)
         else
-            render json: @trail.errors, status: :unprocessable_entity
+        render json: @trail.errors, status: :unprocessable_entity
         end
     end
 
 
     def destroy
-        @trail.destroy
-        head :no_content
+        if @trail.user_id == current_user.id
+            @trail.destroy
+            head :no_content
+        else
+            render json: { error: 'Not authorized' }, status: :unauthorized
+        end
     end
 
     def search

@@ -17,6 +17,8 @@ class Trail < ApplicationRecord
     has_one_attached :picture
     has_many :likes, dependent: :destroy
     has_many :likers, through: :likes, source: :user
+    belongs_to :user
+
 
 
     def average_rating

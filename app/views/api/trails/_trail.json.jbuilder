@@ -19,3 +19,4 @@ if trail.picture.attached?
 else
   json.photo_url "https://fortrails-seeds.s3.amazonaws.com/trail_14.jpg"
 end
+
