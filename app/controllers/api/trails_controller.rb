@@ -1,5 +1,5 @@
 class Api::TrailsController < ApplicationController
-    wrap_parameters include: Trail.attribute_names + ['parkName'] 
+    wrap_parameters include: Trail.attribute_names + ['parkName']
     def index
         @trails = Trail.all
         render 'api/trails/index'
@@ -12,6 +12,7 @@ class Api::TrailsController < ApplicationController
     end
 
     def update
+        @trail = Trail.find(params[:id])
         if @trail.update(trail_params)
         render 'api/trails/show'
         else
@@ -20,17 +21,18 @@ class Api::TrailsController < ApplicationController
     end
 
     def create
-        @trail = current_user.trails.build(trail_params)
+        @trail = current_user.trails.new(trail_params)
         if @trail.save
-        render 'api/trails/show', status: :created, location: api_trail_url(@trail)
+            render 'api/trails/show', status: :created, location: api_trail_url(@trail)
         else
-        render json: @trail.errors, status: :unprocessable_entity
+            render json: @trail.errors, status: :unprocessable_entity
         end
     end
 
 
     def destroy
-        if @trail.user_id == current_user.id
+        @trail = Trail.find(params[:id])
+        if @trail.owner_id == current_user.id
             @trail.destroy
             head :no_content
         else

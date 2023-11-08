@@ -27,7 +27,7 @@ class User < ApplicationRecord
     has_many :reviews, foreign_key: :author_id, dependent: :destroy, inverse_of: :author
     has_many :likes, dependent: :destroy
     has_many :liked_trails, through: :likes, source: :trail
-    has_many :trails, dependent: :destroy
+    has_many :trails, dependent: :destroy, foreign_key: 'owner_id'
 
     def self.find_by_credentials(email, password)
         user = User.find_by(email: email)

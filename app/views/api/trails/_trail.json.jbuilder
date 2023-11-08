@@ -20,3 +20,10 @@ else
   json.photo_url "https://fortrails-seeds.s3.amazonaws.com/trail_14.jpg"
 end
 
+if trail.owner.present?
+  json.owner do
+    json.extract! trail.owner, :id, :first_name, :last_name, :email
+  end
+else
+  json.owner({ id: nil, first_name: 'N/A', last_name: 'N/A', email: 'N/A' })
+end

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import { createTrail,deleteTrail,editTrail } from '../../../store/trail';
 import NavigationBar from '../../Navigation';
+import TrailShowPageItems from '../TrailShowPage/TrailIndexItems';
 
 
 const CreateTrailPage = () => {
@@ -17,10 +18,14 @@ const CreateTrailPage = () => {
     const [endLng, setEndLng] = useState('');
     const [difficulty, setDifficulty] = useState("Easy");
     const [picture, setPicture] = useState(null);
-    const [trailId, setTrailId] = useState(null);
-    const userTrails = useSelector((state) => state.trails); 
+    const currentUser = useSelector((state) => state.session.user);
+    const userTrails = useSelector((state) => {
+        const trailsArray = Object.values(state.trails);
+        return trailsArray.filter((trail) => trail.owner.id === currentUser.id);
+    });
+    console.log(userTrails)
 
-    const handleDelete = () => {
+    const handleDelete = (trailId) => {
         if (trailId) {
             dispatch(deleteTrail(trailId));
         }
@@ -162,21 +167,23 @@ const CreateTrailPage = () => {
                         </select>
                     </div>
                     <button type="submit">Create Trail</button>
-                    <button type="button" onClick={() => handleUpdate(trailId)}>Update Trail</button>
-                    <button type="button" onClick={() => handleDelete(trailId)}>Delete Trail</button>
+                    
 
                 </form>
 
                 <h3>My Trails</h3>
-                {/* <ul>
-                    {userTrails.map((trail) => (
-                        <li key={trail.id}>
-                            {trail.trail_name}
-                            <button onClick={() => handleDelete(trail.id)}>Delete</button>
-                            <button onClick={() => handleUpdate(trail.id)}>Update</button>
-                        </li>
-                    ))}
-                </ul> */}
+                <div className='trail-item-container'>
+                    <ul className='trail-item-list'>
+                        {userTrails.map((trail) => (
+                            <li key={trail.id}>
+                                <TrailShowPageItems trail={trail} />
+                                <button onClick={() => handleDelete(trail.id)}>Delete</button>
+                                <button onClick={() => handleUpdate(trail.id)}>Update</button>
+                            </li>
+                            
+                        ))}
+                    </ul>
+                </div>
             </div>
         </>
     );
