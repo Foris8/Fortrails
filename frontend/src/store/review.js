@@ -54,6 +54,13 @@ export const getTrailReviews = trailId => state => (
     
 );
 
+export const getUserReviewForTrail = (state, userId, trailId) => {
+    const reviews = Object.values(state.reviews);
+    const userReview = reviews.find(review => review.authorId === userId && review.trailId === trailId);
+    return userReview ? userReview.id : null;
+};
+
+
 export const createReview = (review) => async dispatch => {
     const response = await csrfFetch("/api/reviews", {
         method: "POST",
@@ -77,8 +84,8 @@ export const destroyReview = (reviewId) => async dispatch => {
     return response;
 };
 
-export const editReview = (review) => async dispatch => {
-    const response = await csrfFetch(`/api/reviews/${review.id}`, {
+export const editReview = (reviewId,review) => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: "PUT",
         body: JSON.stringify(review)
     });

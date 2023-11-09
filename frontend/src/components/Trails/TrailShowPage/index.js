@@ -9,11 +9,11 @@ import "./index.css"
 import TrailIndexPage from '../TrailIndexPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-import ReviewForm from './ReviewForm';
 import ReviewButton from './ReviewButton';
 import StarRating from './starRating';
 import TrailShowPageList from './TrailIndex';
 import SingleTrailMap from '../../GoogleMap/singleTrail';
+import { getUserReviewForTrail } from '../../../store/review';
 
 const TrailShowPage = () =>{
     const dispatch = useDispatch()
@@ -23,6 +23,8 @@ const TrailShowPage = () =>{
     const sessionUser = useSelector(state => state.session.user);
     const trail = useSelector(state => state.trails[trailId]);
     const reviews = useSelector(getTrailReviews(parseInt(trailId))); 
+    const reviewId = useSelector(state => getUserReviewForTrail(state, sessionUser.id, trail.id)); // get the reviewID if exits
+
 
     useEffect(() => {
         dispatch(fetchTrail(trailId));
@@ -91,7 +93,7 @@ const TrailShowPage = () =>{
                                 </div>
 
                                 <div className="button-container">
-                                    <ReviewButton trail={trail} className="beautiful-button" />
+                                    <ReviewButton trail={trail} hasReviewed={hasReviewed} reviewId={reviewId} className="beautiful-button" />
                                 </div>
                             </div>
                            
@@ -147,19 +149,6 @@ const TrailShowPage = () =>{
 }
 
 
-function LeaveReview({ trail }){
-    const [showReviewForm, setShowReviewForm] = useState(false);
 
-    return showReviewForm? (
-       <ReviewForm
-        trail={trail}
-        closeForm={() => setShowReviewForm(false)}/>
-       
-    ):(
-        <button className='review-button' onClick={()=> setShowReviewForm(true)}>
-            Write a Review
-        </button>
-    )
-}
 
 export default TrailShowPage;

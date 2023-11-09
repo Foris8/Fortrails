@@ -14,7 +14,7 @@ class Api::TrailsController < ApplicationController
     def update
         @trail = Trail.find(params[:id])
         if @trail.update(trail_params)
-        render 'api/trails/show'
+        render 'api/trails/update'
         else
         render json: @trail.errors, status: :unprocessable_entity
         end
@@ -23,7 +23,7 @@ class Api::TrailsController < ApplicationController
     def create
         @trail = current_user.trails.new(trail_params)
         if @trail.save
-            render 'api/trails/show', status: :created, location: api_trail_url(@trail)
+            render 'api/trails/update', status: :created, location: api_trail_url(@trail)
         else
             render json: @trail.errors, status: :unprocessable_entity
         end

@@ -10,6 +10,7 @@ function TrailMap({
     mapOptions = {},
     markerEventHandlers = {}
 }) {
+    
     const [map, setMap] = useState(null);
     const mapRef = useRef(null);
     const markers = useRef({});
@@ -110,23 +111,29 @@ function TrailMap({
 
     // Change the style for bench marker on hover
     useEffect(() => {
-        Object.entries(markers.current).forEach(([trailId, marker]) => {
-            const icon = marker.getIcon();
+    Object.entries(markers.current).forEach(([trailId, marker]) => {
+        const icon = marker.getIcon();
 
+        // Find the trail by its id
+        const trail = trails.find(trail => trail.id.toString() === trailId);
+
+        if (trail) {
             if (parseInt(trailId) === highlightedTrail) {
                 marker.setIcon({ ...icon, fillColor: 'red', scale: 0.07 });
                 routes.forEach(routeRenderer => routeRenderer.setMap(null));
                 setRoutes([]);
 
                 // Display the route for the selected trail
-                displayRoute(trails[trailId-1]);
+                displayRoute(trail);
             } else {
                 marker.setIcon({ ...icon, fillColor: 'red', scale: 0.05 });
                 routes.forEach(routeRenderer => routeRenderer.setMap(null));
                 setRoutes([]);
             }
-        });
-    }, [markers, highlightedTrail]);
+        }
+    });
+}, [markers, highlightedTrail, trails]); // Include trails in the dependency array
+
 
 
 
@@ -141,6 +148,7 @@ function TrailMap({
 
 
 function TrailMapWrapper(props) {
+    
     return (
         <Wrapper apiKey={process.env.REACT_APP_MAPS_API_KEY}>
             <TrailMap {...props} />

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import "./ReviewButton.css";
-import { createReview } from '../../../store/review';
+import { createReview,editReview } from '../../../store/review';
 
-export default function ReviewButton({trail}) {
+export default function ReviewButton({trail, hasReviewed, reviewId}) {
     const [modal, setModal] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const [rating, setRating] = useState(5);
@@ -35,11 +35,23 @@ export default function ReviewButton({trail}) {
     };
 
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createReview({trailId:trail.id, rating, body, authorId:sessionUser.id }))
+        const reviewData = {
+            trailId: trail.id,
+            rating,
+            body,
+            authorId: sessionUser.id
+        };
+
+        if (hasReviewed) {
+            debugger
+            dispatch(editReview(reviewId, reviewData));
+        } else {
+            dispatch(createReview(reviewData));
+        }
         setModal(!modal);
-    }
+    };
 
 
     if (modal) {
@@ -50,9 +62,15 @@ export default function ReviewButton({trail}) {
 
     return (
         <>
-            <button onClick={toggleModal} className="btn-modal">
-                Write Review
-            </button>
+            {hasReviewed ? (
+                <button onClick={toggleModal} className="btn-modal">
+                    Update Review
+                </button>
+            ) : (
+                <button onClick={toggleModal} className="btn-modal">
+                    Write Review
+                </button>
+            )}
 
             {modal && (
                 <div className="modal">

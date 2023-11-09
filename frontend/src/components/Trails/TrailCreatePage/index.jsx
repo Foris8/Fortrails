@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import { createTrail,deleteTrail,editTrail } from '../../../store/trail';
 import NavigationBar from '../../Navigation';
 import TrailShowPageItems from '../TrailShowPage/TrailIndexItems';
+import TrailFormModal from './TrailFormModal';
+import "./index.css";
+import { fetchTrails } from '../../../store/trail';
 
 
 const CreateTrailPage = () => {
@@ -23,11 +26,38 @@ const CreateTrailPage = () => {
         const trailsArray = Object.values(state.trails);
         return trailsArray.filter((trail) => trail.owner.id === currentUser.id);
     });
-    console.log(userTrails)
+    const [showModal, setShowModal] = useState(false);
+    const [modalType, setModalType] = useState('create'); // 'create' or 'update'
+    const [currentTrailId, setCurrentTrailId] = useState(null);
 
-    const handleDelete = (trailId) => {
+    
+
+    const openModal = (type, trailId = null) => {
+        setModalType(type);
+        setCurrentTrailId(trailId); // Will be null for 'create'
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+        setCurrentTrailId(null); // Reset current trail ID when closing modal
+    };
+
+    const handleModalSubmit = async (trailData) => {
+        if (modalType === 'create') {
+            await dispatch(createTrail(trailData));
+            dispatch(fetchTrails());
+        } else if (modalType === 'update') {
+            await dispatch(editTrail(currentTrailId, trailData));
+            dispatch(fetchTrails());
+        }
+        closeModal();
+    };
+
+    const handleDelete = async (trailId) => {
         if (trailId) {
             dispatch(deleteTrail(trailId));
+            
         }
     };
 
@@ -48,7 +78,7 @@ const CreateTrailPage = () => {
         dispatch(editTrail(trailId, trailData));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
         const trailData = {
@@ -64,112 +94,20 @@ const CreateTrailPage = () => {
             difficulty,
             picture
         };
-        dispatch(createTrail(trailData));
+        await dispatch(createTrail(trailData));
+        dispatch(fetchTrails());
     };
+
+    useEffect(() => {
+        dispatch(fetchTrails());
+    }, [dispatch]);
 
     return (
         <>
             <NavigationBar />
             <div className='create-trail-page'>
                 <h2>Create a New Trail</h2>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>Trail Name:</label>
-                        <input
-                            type="text"
-                            value={trailName}
-                            onChange={(e) => setTrailName(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>Description:</label>
-                        <textarea
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div>
-                        <label>Park Name:</label>
-                        <input
-                            type="text"
-                            value={parkName}
-                            onChange={(e) => setParkName(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>Park Latitude:</label>
-                        <input
-                            type="number"
-                            value={lat}
-                            onChange={(e) => setLat(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>Park Longitude:</label>
-                        <input
-                            type="number"
-                            value={lng}
-                            onChange={(e) => setLng(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>Start Latitude:</label>
-                        <input
-                            type="number"
-                            value={startLat}
-                            onChange={(e) => setStartLat(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>Start Longitude:</label>
-                        <input
-                            type="number"
-                            value={startLng}
-                            onChange={(e) => setStartLng(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>End Latitude:</label>
-                        <input
-                            type="number"
-                            value={endLat}
-                            onChange={(e) => setEndLat(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>End Longitude:</label>
-                        <input
-                            type="number"
-                            value={endLng}
-                            onChange={(e) => setEndLng(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>Difficulty:</label>
-                        <select
-                            value={difficulty}
-                            onChange={(e) => setDifficulty(e.target.value)}
-                            required
-                        >
-                            <option value="Easy">Easy</option>
-                            <option value="Moderate">Moderate</option>
-                            <option value="Hard">Hard</option>
-                        </select>
-                    </div>
-                    <button type="submit">Create Trail</button>
-                    
-
-                </form>
+                <button onClick={() => openModal('create')}>Create New Trail</button>
 
                 <h3>My Trails</h3>
                 <div className='trail-item-container'>
@@ -178,13 +116,21 @@ const CreateTrailPage = () => {
                             <li key={trail.id}>
                                 <TrailShowPageItems trail={trail} />
                                 <button onClick={() => handleDelete(trail.id)}>Delete</button>
-                                <button onClick={() => handleUpdate(trail.id)}>Update</button>
+                                <button onClick={() => openModal('update', trail.id)}>Update</button>
                             </li>
-                            
                         ))}
                     </ul>
                 </div>
             </div>
+
+            {showModal && (
+                <TrailFormModal
+                    show={showModal}
+                    onClose={closeModal}
+                    onSubmit={handleModalSubmit}
+                    trailData={modalType === 'update' ? userTrails.find(trail => trail.id === currentTrailId) : null}
+                />
+            )}
         </>
     );
 };

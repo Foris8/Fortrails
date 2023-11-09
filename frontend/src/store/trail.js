@@ -65,6 +65,7 @@ export const editTrail = (trailId, trailData) => async dispatch => {
 
     if (res.ok) {
         const trail = await res.json();
+        
         dispatch(updateTrail(trail));
     }
 };
@@ -106,7 +107,6 @@ export const fetchTrails = ()=> async dispatch =>{
     const res = await csrfFetch(`/api/trails`);
     if (res.ok){
         const trails = await res.json();
-       
         dispatch(receiveTrails(trails));
     }
 }
@@ -130,16 +130,19 @@ const trailReducer = (state={},action) =>{
         case RECEIVE_TRAILS:
             return {...action.trails};
         case RECEIVE_TRAIL:
-            nextState[action.data.id] = action.data;
-            return nextState
+            const trailId = Object.keys(action.data)[0];
+            nextState[trailId] = action.data[trailId];
+            return nextState;
         case ADD_TRAIL:
-            nextState[action.trail.id] = action.trail;
+            const newTrailId = Object.keys(action.trail)[0];
+            nextState[newTrailId] = action.trail[newTrailId];
             return nextState;
         case REMOVE_TRAIL:
             delete nextState[action.trailId];
             return nextState;
         case UPDATE_TRAIL:
-            nextState[action.trail.id] = action.trail;
+            const updatedTrailId = Object.keys(action.trail)[0];
+            nextState[updatedTrailId] = action.trail[updatedTrailId];
             return nextState;
         default:
             return state;

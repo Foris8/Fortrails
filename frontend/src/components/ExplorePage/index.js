@@ -3,8 +3,6 @@ import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import LoginFormPage from "../LoginFormPage";
 import './index.css';
-import { Link, useParams } from 'react-router-dom';
-import { Redirect } from "react-router-dom";
 import NavigationBar from "../Navigation";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import { useMemo } from "react";
@@ -22,6 +20,7 @@ const ExplorePage = ()=>{
     const history = useHistory();
     const dispatch = useDispatch();
     const trails = useSelector(state => Object.values(state.trails));
+
     const [highlightedTrail, setHighlightedTrail] = useState(null);
 
     
