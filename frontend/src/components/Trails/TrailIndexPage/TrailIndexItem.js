@@ -4,6 +4,7 @@ import { fetchTrails, getTrails } from '../../../store/trail';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import TrailLikeButton from '../TrailShowPage/TrailLikeButton';
 
 
 const TrailIndexItem = ({ trail, isHighlighted, setHighlightedTrail }) =>{
@@ -26,6 +27,9 @@ const TrailIndexItem = ({ trail, isHighlighted, setHighlightedTrail }) =>{
                     onMouseEnter={() => setHighlightedTrail(trail.id)}
                     onMouseLeave={() => setHighlightedTrail(null)}
                 />}
+                <div className="trail-like-button">
+                    <TrailLikeButton trailId={trail.id} />
+                </div>
             
             </div>
                 

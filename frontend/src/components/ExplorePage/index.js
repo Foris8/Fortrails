@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import LoginFormPage from "../LoginFormPage";
@@ -11,6 +11,7 @@ import { fetchReviews } from "../../store/review";
 import TrailMap from "../GoogleMap"
 import { useHistory } from "react-router-dom";
 import MainSearch from "../MainPage/MainSearch";
+import { fetchTrails } from "../../store/trail";
 
 const ExplorePage = ()=>{
     const { isLoaded } = useLoadScript({
@@ -20,10 +21,20 @@ const ExplorePage = ()=>{
     const history = useHistory();
     const dispatch = useDispatch();
     const trails = useSelector(state => Object.values(state.trails));
+    const sessionUser = useSelector(state => state.session.user);
 
     const [highlightedTrail, setHighlightedTrail] = useState(null);
 
-    
+
+    useEffect(() => {
+        if (!sessionUser) {
+            // Redirect to login page if there is no logged-in user
+            history.push('/login');
+        } else {
+            dispatch(fetchTrails());
+        }
+    }, [dispatch, sessionUser, history]);
+
 
     return (
         <>

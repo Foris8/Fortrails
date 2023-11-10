@@ -24,15 +24,16 @@ const TrailShowPageItems = ({ trail }) => {
             <div className={"trail-photo"}>
                 {photoUrl && <img
                     src={photoUrl}
-                    alt="Image"
+                    alt="Trail Image"
                     className={"trail-item-image"}
                     onClick={handleClickTrailImg}
                 />}
-
+                <div className="trail-like-button">
+                    <TrailLikeButton trailId={trail.id} />
+                </div>
             </div>
-
+                       
             <div className='trail-content'>
-                <TrailLikeButton trailId={trail.id} />
                 <div className='trail-content-rating'>
                     <span>{difficulty} </span>
                     <span>• </span>

@@ -7,6 +7,7 @@ import ExplorePage from "./components/ExplorePage";
 import TrailShowPage from "./components/Trails/TrailShowPage";
 import { useEffect } from "react";
 import CreateTrailPage from "./components/Trails/TrailCreatePage";
+import SavedTrailPage from "./components/ExplorePage/SavedTrail";
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/explore" component={ExplorePage} />
         <Route exact path="/trails/:trailId" component={TrailShowPage} />
         <Route exact path="/createTrail" component={CreateTrailPage}/>
+        <Route exact path="/save" component={SavedTrailPage}/>
       </Switch>
     </>
   );

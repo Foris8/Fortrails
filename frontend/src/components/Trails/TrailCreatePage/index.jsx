@@ -6,10 +6,13 @@ import TrailShowPageItems from '../TrailShowPage/TrailIndexItems';
 import TrailFormModal from './TrailFormModal';
 import "./index.css";
 import { fetchTrails } from '../../../store/trail';
+import AllTrailIndexItems from '../TrailIndexPage/AllTrailsIndex';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const CreateTrailPage = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [trailName, setTrailName] = useState('');
     const [description, setDescription] = useState('');
     const [parkName, setParkName] = useState('');
@@ -22,13 +25,15 @@ const CreateTrailPage = () => {
     const [difficulty, setDifficulty] = useState("Easy");
     const [picture, setPicture] = useState(null);
     const currentUser = useSelector((state) => state.session.user);
-    const userTrails = useSelector((state) => {
-        const trailsArray = Object.values(state.trails);
-        return trailsArray.filter((trail) => trail.owner.id === currentUser.id);
-    });
+    
     const [showModal, setShowModal] = useState(false);
     const [modalType, setModalType] = useState('create'); // 'create' or 'update'
     const [currentTrailId, setCurrentTrailId] = useState(null);
+    const sessionUser = useSelector(state => state.session.user);
+    const userTrails = useSelector((state) => {
+        const trailsArray = Object.values(state.trails);
+        return trailsArray.filter((trail) => trail.owner && currentUser && trail.owner.id === currentUser.id);
+    });
 
     
 
@@ -99,26 +104,36 @@ const CreateTrailPage = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchTrails());
-    }, [dispatch]);
+        if (!sessionUser) {
+            history.push('/login');
+        } else {
+            dispatch(fetchTrails());
+        }
+    }, [dispatch, sessionUser, history]);
+
+
+    
 
     return (
         <>
             <NavigationBar />
             <div className='create-trail-page'>
-                <h2>Create a New Trail</h2>
-                <button onClick={() => openModal('create')}>Create New Trail</button>
+                <h1>Create a New Trail</h1>
+                <button className='create-button' onClick={() => openModal('create')}>Create New Trail</button>
 
-                <h3>My Trails</h3>
-                <div className='trail-item-container'>
-                    <ul className='trail-item-list'>
+                <h1 className='create-my-trail'>My Trails List</h1>
+                <div className='create-trail-item-container'>
+                    <ul className='create-trail-item-list'>
                         {userTrails.map((trail) => (
-                            <li key={trail.id}>
-                                <TrailShowPageItems trail={trail} />
-                                <button onClick={() => handleDelete(trail.id)}>Delete</button>
-                                <button onClick={() => openModal('update', trail.id)}>Update</button>
+                            <li key={trail.id} className="all-trail-index-item">
+                                <AllTrailIndexItems trail={trail} />
+                                <div>
+                                    <button className='create-button' onClick={() => handleDelete(trail.id)}>Delete</button>
+                                    <button className='create-button' onClick={() => openModal('update', trail.id)}>Update</button>
+                                </div>
                             </li>
                         ))}
+
                     </ul>
                 </div>
             </div>

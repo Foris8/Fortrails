@@ -11,6 +11,7 @@ function MainSearch() {
     const dispatch = useDispatch();
     const history = useHistory();
     const searchResults = useSelector(state=>Object.values(state.search))
+    console.log(searchResults.length>0)
 
     const handleChange = (e)=>{
         const query = e.target.value;

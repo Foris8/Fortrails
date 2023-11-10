@@ -8,7 +8,7 @@ import NavigationBar from '../../Navigation';
 import "./index.css"
 import TrailIndexPage from '../TrailIndexPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faTrash } from '@fortawesome/free-solid-svg-icons'
 import ReviewButton from './ReviewButton';
 import StarRating from './starRating';
 import TrailShowPageList from './TrailIndex';
@@ -116,8 +116,8 @@ const TrailShowPage = () =>{
                                                         onClick={() => dispatch(destroyReview(review.id))}
                                                         className='delete-icon'
                                                     >
-                                                        Delete
-                                                        <i className="fa-solid fa-rectangle-xmark" />
+                                                   
+                                                        <FontAwesomeIcon icon={faTrash} size="2x"/>
                                                     </button>
                                                 </>
                                             )}

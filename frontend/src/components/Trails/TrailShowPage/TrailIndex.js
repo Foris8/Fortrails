@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrails, getTrails } from '../../../store/trail';
 import TrailShowPageItems from './TrailIndexItems';
 import './TrailIndex.css';
+import AllTrailIndexItems from '../TrailIndexPage/AllTrailsIndex';
 
 const TrailShowPageList = ({ }) => {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const TrailShowPageList = ({ }) => {
             <ul className='trail-item-list'>
                 {trails.map((trail) => {
 
-                    return <TrailShowPageItems
+                    return <AllTrailIndexItems
                         trail={trail}
                         key={trail.id}
     

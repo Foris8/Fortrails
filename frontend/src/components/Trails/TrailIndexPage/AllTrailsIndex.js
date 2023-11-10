@@ -4,6 +4,7 @@ import { fetchTrails, getTrails } from '../../../store/trail';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import TrailLikeButton from '../TrailShowPage/TrailLikeButton';
 
 
 
@@ -32,6 +33,9 @@ const AllTrailIndexItems = ({trail}) =>{
                     className={"trail-item-image"}
                     onClick={handleClickTrailImg}
                 />}
+                <div className="trail-like-button">
+                    <TrailLikeButton trailId={trail.id} />
+                </div>
             
             </div>
                 

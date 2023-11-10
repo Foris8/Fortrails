@@ -15,7 +15,7 @@ function NavigationBar(){
 
     const handleButtonClick = (e) => {
         e.preventDefault();
-
+        history.push('/')
         return dispatch(sessionActions.logout())
     }
 
@@ -25,6 +25,10 @@ function NavigationBar(){
 
     const handleTitleClick = (e) =>{
         history.push('/')
+    }
+
+     const handleSaveClick = (e) =>{
+        history.push('/save')
     }
 
     const handleCreateTrail = (e) =>{
@@ -39,14 +43,12 @@ function NavigationBar(){
                 </Link>
                 <p id="logo-title" onClick={handleTitleClick}>ForTrails</p>
                 <p onClick={handleExploreClick}>Explore</p>
-                <p onClick={handleExploreClick}>Saved</p>
+                <p onClick={handleSaveClick}>Saved</p>
                 <p onClick={handleCreateTrail}>Create Trails</p>
             </div>
             
             <div className="right-panel">
-                <a href="https://www.linkedin.com/in/fanyitang/" target="_blank" rel="noopener noreferrer">
-                    <p>Help</p>
-                </a>
+                
                 {sessionUser ? <button onClick={handleButtonClick} id="logout-button" >
                     Log Out
                 </button> : <Link to="/login" id="login-button">Log In</Link>}

@@ -215,3 +215,61 @@ p{
     color: #425245;
     margin: 0;
 }
+
+
+.like-button {
+    background: none;
+    /* Makes the background of the button transparent */
+    border: none;
+    /* Removes the border */
+    padding: 0;
+    /* Removes padding */
+    cursor: pointer;
+    /* Changes the cursor to a pointer to indicate it's clickable */
+    outline: none;
+    /* Removes the outline that appears when the button is focused */
+}
+
+/* Optional: Add some additional styling for interaction states */
+.like-button:hover,
+.like-button:focus {
+    outline: none;
+    /* Ensures no outline on focus */
+}
+
+/* If you want to remove the default button styling when the button is active (clicked) */
+.like-button:active {
+    border: none;
+    outline: none;
+}
+
+.trail-photo {
+    position: relative;
+
+}
+
+
+.trail-like-button {
+    position: absolute;
+    top: 5px;
+    left: 15em;
+    z-index: 10;
+}
+
+.left-trail-content{
+    width: 100%;
+}
+
+.review {
+    position: relative;
+    /* other styles for review */
+}
+
+.delete-icon {
+    position: absolute;
+    top: 100px;
+    /* adjust as needed */
+    right: 12px;
+    /* adjust as needed */
+    /* other styles for delete button */
+}

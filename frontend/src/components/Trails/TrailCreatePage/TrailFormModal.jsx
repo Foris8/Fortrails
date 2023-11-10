@@ -123,7 +123,7 @@ const TrailFormModal = ({ show, onClose, onSubmit, trailData }) => {
             </div>
 
             <div className="form-group">
-              <label>Start Latitude:</label>
+              <label>Trail Start Latitude:</label>
               <input
                 type="number"
                 className="form-control"
@@ -134,7 +134,7 @@ const TrailFormModal = ({ show, onClose, onSubmit, trailData }) => {
             </div>
 
             <div className="form-group">
-              <label>Start Longitude:</label>
+              <label>Trail Start Longitude:</label>
               <input
                 type="number"
                 className="form-control"
@@ -145,7 +145,7 @@ const TrailFormModal = ({ show, onClose, onSubmit, trailData }) => {
             </div>
 
             <div className="form-group">
-              <label>End Latitude:</label>
+              <label>Trail End Latitude:</label>
               <input
                 type="number"
                 className="form-control"
@@ -156,7 +156,7 @@ const TrailFormModal = ({ show, onClose, onSubmit, trailData }) => {
             </div>
 
             <div className="form-group">
-              <label>End Longitude:</label>
+              <label>Trail End Longitude:</label>
               <input
                 type="number"
                 className="form-control"
