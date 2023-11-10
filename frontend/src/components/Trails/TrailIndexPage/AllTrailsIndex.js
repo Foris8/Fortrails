@@ -12,6 +12,9 @@ const AllTrailIndexItems = ({trail}) =>{
     const history = useHistory();
     const dispatch = useDispatch();
     const {trailName,description,lat,lng,photoUrl,difficulty,averageRating,totalNumRating} = trail;
+    const sessionUser = useSelector(state => state.session.user);
+
+    
 
 
     useEffect(() => {
@@ -19,9 +22,13 @@ const AllTrailIndexItems = ({trail}) =>{
     }, [dispatch]);
 
     
-    const handleClickTrailImg = (e) =>{
-        history.push(`/trails/${trail.id}`)
-    }
+    const handleClickTrailImg = (e) => {
+        if (!sessionUser) {
+            history.push('/login'); // Redirect to login if there is no session user
+        } else {
+            history.push(`/trails/${trail.id}`); // Navigate to trail details page
+        }
+    };
 
     return(
         
