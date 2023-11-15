@@ -90,27 +90,42 @@ Creating Fortrails presented a myriad of intricate technical challenges, especia
    - All trail-related photos are stored securely on AWS S3, ensuring durability, scalability, and speedy access.
    - Thumbnails and preview functionalities for efficient and attractive photo display.
 
-### 6. **CRD Reviews:**
+### 6. **CRUD Reviews:**
    - **Create:** Users can share their experiences by writing reviews for trails they've visited.
    - **Read:** Display all reviews for a trail, giving prospective visitors valuable insights.
+   - **Read:** Update a review for a trail
    - **Delete:** Users can delete their reviews, keeping the feedback section relevant and up-to-date.
 <p align="center">
   <img src="./writeReview.png" />
 </p>
 
+### 7. **Trail Likes:**
+   - Users should be able to express their appreciation for a trail by "liking" it.
+   - User should be able to "unsave the trail"
+<p align="center">
+  <img src="./Like.gif" />
+</p>
+
+### 8. **Saved Trails:**
+   - Users can check all the Liked trails in Saved Page.
+<p align="center">
+  <img src="./SavedTrails.png" />
+</p>
+
+### 9. **CRUD Trails:**
+   - **Create:** Users can add new trails, providing details like location, difficulty, and descriptions.
+   - **Read:** Allows users to view detailed information about trails, including descriptions, reviews, and images.
+   - **Update:** Trail creators can edit trail information to reflect changes or new insights.
+   - **Delete:** Users can remove trails they've added, ensuring the platform stays current and accurate.
+<p align="center">
+  <img src="./CRUDTrail.gif" />
+</p>
+
+
 
 ## Features To Be Implemented:
 
-### 1. **Trail Likes:**
-Users should be able to express their appreciation for a trail by "liking" it.
-
-### 2. **Saved Trails:**
-Allow users to save trails for future reference.
-
-### 3. **User-Created Trails:**
-Empower users to contribute by creating their own trails.
-
-### 4. **Weather Feature:**
+### 1. **Weather Feature:**
 Integrate real-time weather data for each trail, helping users plan their visit better.
 
 
